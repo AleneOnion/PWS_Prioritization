@@ -1,0 +1,312 @@
+---
+title: "Assessment Analysis"
+author: "Alene Onion"
+date: "10/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#  {.tabset}
+
+NOTE: ASSESSMENT ARE DRAFT AND MUST NOT BE SHARED OUTSIDE THE DEPARTMENT
+
+## All Together
+
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+
+classifications
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#merging lake id with the DOH ID
+
+rm(list=ls())
+draft<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-draft %>% 
+  select(seg_id:parameter) %>% 
+  distinct() %>% 
+  rename(LOCATION_PWL_ID=seg_id) %>% 
+  mutate(value=1)
+
+forplot<-draft %>%
+  select(LOCATION_PWL_ID,class,value) %>% distinct() %>% mutate(class_sample=substr(class,1,1))
+print(ggplot(forplot,aes(fill=class,x=class_sample)) +
+        geom_bar(psoition="dodge",state="identity")+
+        theme(axis.title.x = element_blank()))
+
+```
+
+
+lake assessments
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+draft1<-draft %>% 
+  select(LOCATION_PWL_ID,segment_assessment,use_assessment,class,parameter,use) %>% distinct() %>% 
+  mutate(phosphorus=ifelse(grepl('phosphorus',parameter),1,0),
+         ph=ifelse((grepl('; ph',parameter)|grepl('ph;',parameter)|parameter=="ph"),1,0),
+         dissolved_oxygen=ifelse(grepl('dissolved_oxygen',parameter),1,0),
+         chloride=ifelse(grepl('chloride',parameter),1,0),
+         ammonia=ifelse(grepl('ammonia',parameter),1,0),
+         nitrate_nitrite=ifelse(grepl('nitrate',parameter)|grepl('nitrite',parameter)|grepl('nitrate/nitrite',parameter),1,0),
+         metals=ifelse(grepl('iron',parameter)|grepl('manganese',parameter)|grepl('magnesium',parameter)|grepl('copper',parameter),1,0),
+         arsenic=ifelse(grepl('arsenic',parameter),1,0),
+         sulfate=ifelse(grepl('sulfate',parameter),1,0),
+         mercury=ifelse(grepl('mercury',parameter),1,0),
+         toxics=ifelse(grepl('dioxin',parameter)|grepl('mirex',parameter)|grepl('pcbs',parameter)|grepl('ddt',parameter)|grepl('chlordane',parameter)|grepl('cadmium',parameter)|grepl('pcbs_other_toxics',parameter)|grepl('phenolic_compounds',parameter),1,0),
+         fecal_coliform=ifelse(grepl('fecal_coliform',parameter),1,0),
+         solids=ifelse(grepl('silt_sediment',parameter)|grepl('total_dissolved_solids',parameter),1,0),
+         problem_species=ifelse(grepl('problem_species',parameter)|grepl('algal_weed_growth',parameter)|grepl('aquatic_weeds',parameter),1,0),
+         water_level_flow=ifelse(grepl('water_level_flow',parameter),1,0)) %>% 
+  select(-parameter) %>% 
+  gather(parameter_simple,value,-LOCATION_PWL_ID,-use_assessment,-class,-use,-segment_assessment) %>% 
+  filter(value!=0, !(class %in% c('b','b(t)','c'))) %>% 
+  select(-value,-class) %>% distinct() %>% 
+  mutate(value=1)
+
+print(ggplot(draft %>% select(LOCATION_PWL_ID,segment_assessment,value) %>% distinct(),aes(fill=value,x=segment_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+
+The number of confirmed and unconfirmed use assessments that contributed to each category.
+
+I filtered the list to only those use assessments that contributed to the segment assessment. Specifically, I filtered it to only those records where the prefix (IR4a) in the segment assessment was also found in the use assessment.
+
+NOTE: there could be more than one use assessment contributing to a segment assessment per PWLID. For example, a lake could be impaired for fishing and primary contact recreation. That lake would be counted in both the fishing and primary contact bars. So you shouldn't add these up to see the total assessments.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+forplot<-draft %>% 
+  mutate(confirmed=ifelse(grepl("confirmed",use_assessment),'confirmed',
+                          ifelse(grepl('unconfirmed',use_assessment),'unconfirmed',NA)),
+         short_segment=gsub("_.*","",segment_assessment),
+         short_use=gsub("_.*","",use_assessment),
+         key=ifelse(short_segment==short_use,'key',NA)) %>%
+  filter(!is.na(confirmed),!is.na(key)) %>% 
+  distinct()
+print(ggplot(forplot,aes(fill=use,x=segment_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## source water use
+
+this is the breakdown for all assessments for the source_of_water_supply USE in the draft waterbody inventory
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+draft1<-draft %>% 
+  select(LOCATION_PWL_ID,use_assessment,class,parameter,use) %>% distinct() %>% 
+  mutate(phosphorus=ifelse(grepl('phosphorus',parameter),1,0),
+         ph=ifelse((grepl('; ph',parameter)|grepl('ph;',parameter)|parameter=="ph"),1,0),
+         dissolved_oxygen=ifelse(grepl('dissolved_oxygen',parameter),1,0),
+         chloride=ifelse(grepl('chloride',parameter),1,0),
+         ammonia=ifelse(grepl('ammonia',parameter),1,0),
+         nitrate_nitrite=ifelse(grepl('nitrate',parameter)|grepl('nitrite',parameter)|grepl('nitrate/nitrite',parameter),1,0),
+         metals=ifelse(grepl('iron',parameter)|grepl('manganese',parameter)|grepl('magnesium',parameter)|grepl('copper',parameter),1,0),
+         arsenic=ifelse(grepl('arsenic',parameter),1,0),
+         sulfate=ifelse(grepl('sulfate',parameter),1,0),
+         mercury=ifelse(grepl('mercury',parameter),1,0),
+         toxics=ifelse(grepl('dioxin',parameter)|grepl('mirex',parameter)|grepl('pcbs',parameter)|grepl('ddt',parameter)|grepl('chlordane',parameter)|grepl('cadmium',parameter)|grepl('pcbs_other_toxics',parameter)|grepl('phenolic_compounds',parameter),1,0),
+         fecal_coliform=ifelse(grepl('fecal_coliform',parameter),1,0),
+         solids=ifelse(grepl('silt_sediment',parameter)|grepl('total_dissolved_solids',parameter),1,0),
+         problem_species=ifelse(grepl('problem_species',parameter)|grepl('algal_weed_growth',parameter)|grepl('aquatic_weeds',parameter),1,0),
+         water_level_flow=ifelse(grepl('water_level_flow',parameter),1,0)) %>% 
+  select(-parameter) %>% 
+  gather(parameter_simple,value,-LOCATION_PWL_ID,-use_assessment,-class,-use) %>% 
+  filter(value!=0, !(class %in% c('b','b(t)','c'))) %>% 
+  select(-value,-class) %>% distinct() %>% 
+  mutate(value=1)
+
+print(ggplot(draft %>% filter(use=="source_of_water_supply",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters.
+
+Please note! a single lake could list both DO and ph as a concern and would contribute to both the DO and PH bars. So don't add these up to count total assessments
+
+Also note, I had to cluster some parameters for easy viewing:
+		1. Nitrate_Nitrite (nitrate/nitrite, nitrite, nitrate)
+		2. Metals (iron, manganese, magnesium, copper)
+		3. Toxics (dioxin; mirex; pcbs; ddt, chlordane; cadmium; pcbs_other_toxics; phenolic_compounds)
+		4. Solids (silt_sediment; total_dissolved_solids)
+		5. Problem_Species (problem_species; algal_weed_growth; aquatic_weeds)
+
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+forplot<-draft1 %>% filter(use=="source_of_water_supply") %>% distinct()
+print(ggplot(forplot %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## primary contact use
+
+this is the breakdown for all assessments for the primary_contact_recreation USE in the draft waterbody inventory
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+print(ggplot(draft %>% filter(use=="primary_contact_recreation",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters.
+
+Please note! a single lake could list both DO and ph as a concern and would contribute to both the DO and PH bars. So don't add these up to count total assessments
+
+Also note, I had to cluster some parameters for easy viewing:
+		1. Nitrate_Nitrite (nitrate/nitrite, nitrite, nitrate)
+		2. Metals (iron, manganese, magnesium, copper)
+		3. Toxics (dioxin; mirex; pcbs; ddt, chlordane; cadmium; pcbs_other_toxics; phenolic_compounds)
+		4. Solids (silt_sediment; total_dissolved_solids)
+		5. Problem_Species (problem_species; algal_weed_growth; aquatic_weeds)
+
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+forplot<-draft1 %>% filter(use=="primary_contact_recreation") %>% distinct()
+print(ggplot(forplot %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## secondary contact use
+
+this is the breakdown for all assessments for the secondary_contact_recreation USE in the draft waterbody inventory
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+print(ggplot(draft %>% filter(use=="secondary_contact_recreation",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters.
+
+Please note! a single lake could list both DO and ph as a concern and would contribute to both the DO and PH bars. So don't add these up to count total assessments
+
+Also note, I had to cluster some parameters for easy viewing:
+		1. Nitrate_Nitrite (nitrate/nitrite, nitrite, nitrate)
+		2. Metals (iron, manganese, magnesium, copper)
+		3. Toxics (dioxin; mirex; pcbs; ddt, chlordane; cadmium; pcbs_other_toxics; phenolic_compounds)
+		4. Solids (silt_sediment; total_dissolved_solids)
+		5. Problem_Species (problem_species; algal_weed_growth; aquatic_weeds)
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+forplot<-draft1 %>% filter(use=="secondary_contact_recreation") %>% distinct()
+print(ggplot(forplot %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## fishing use
+
+this is the breakdown for all assessments for the fishing USE in the draft waterbody inventory
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+print(ggplot(draft %>% filter(use=="fishing",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters.
+
+Please note! a single lake could list both DO and ph as a concern and would contribute to both the DO and PH bars. So don't add these up to count total assessments
+
+Also note, I had to cluster some parameters for easy viewing:
+		1. Nitrate_Nitrite (nitrate/nitrite, nitrite, nitrate)
+		2. Metals (iron, manganese, magnesium, copper)
+		3. Toxics (dioxin; mirex; pcbs; ddt, chlordane; cadmium; pcbs_other_toxics; phenolic_compounds)
+		4. Solids (silt_sediment; total_dissolved_solids)
+		5. Problem_Species (problem_species; algal_weed_growth; aquatic_weeds)
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+forplot<-draft1 %>% filter(use=="fishing") %>% distinct()
+print(ggplot(forplot %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## shellfishing use
+
+this is the breakdown for all assessments for the shellfishing USE in the draft waterbody inventory
+NOTE: this assessment list is DRAFT and SHOULD NOT BE SHARED OUTSIDE OF THE DEPARTMENT
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+print(ggplot(draft %>% filter(use=="shellfishing",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters.
+
+Please note! a single lake could list both DO and ph as a concern and would contribute to both the DO and PH bars. So don't add these up to count total assessments
+
+Also note, I had to cluster some parameters for easy viewing:
+		1. Nitrate_Nitrite (nitrate/nitrite, nitrite, nitrate)
+		2. Metals (iron, manganese, magnesium, copper)
+		3. Toxics (dioxin; mirex; pcbs; ddt, chlordane; cadmium; pcbs_other_toxics; phenolic_compounds)
+		4. Solids (silt_sediment; total_dissolved_solids)
+		5. Problem_Species (problem_species; algal_weed_growth; aquatic_weeds)
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+forplot<-draft1 %>% filter(use=="shellfishing") %>% distinct()
+print(ggplot(forplot %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
