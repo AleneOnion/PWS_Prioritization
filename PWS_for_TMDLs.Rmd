@@ -30,11 +30,11 @@ library(tidyverse)
 # library(tidyverse)
 library(knitr)
 #Reading in new database
-setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
 location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
 lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
 results<-read.csv("new_database/results.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
-setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
 
 ################################################
 #removed because more accuate list of PWS is from DOH now in our database

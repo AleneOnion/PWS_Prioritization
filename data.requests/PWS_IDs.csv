@@ -1,0 +1,99 @@
+LOCATION_PWL_ID,LAKE_HISTORY_ID,waterbody,huc_10,basin_name,class,water_type,segment_assessment,use,use_assessment,parameter,value,PWS.ID,WBCATGRY,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE,Notes,ID
+0902-0034,0902UCH0002,Upper Chateaugay Lake,415030801,Saint Lawrence River,b(t),pond,IR4a_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.967598,44.7412,appears Ok,NY0922982
+1002-0009,1002CHA0020,Chazy Lake,415040815,Lake Champlain,aa(t),pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen,1,NA,NA,-73.819801,44.738998,appears Ok,NY0930189
+1308-0014,1308TAG0869,Lake Taghkanic,202000610,Lower Hudson River,b(ts),pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.709503,42.091202,appears Ok,NY1011778
+0801-0281,0801STI0493,Stillwater Reservoir,415010110,Black River,c(t),pond,IR4a_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.9543,43.912701,appears Ok,NY2130052
+1501-0053,1501STA1011,Lake Stahahe,203010302,Hackensack-Ramapo Rivers,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.160301,41.237801,appears Ok,NY3517675
+1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.096001,41.310299,appears Ok,NY3517676
+0302-0020,0302SOD0096,Sodus Bay,414010104,Lake Ontario,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.958504,43.248299,appears Ok,NY5830005
+1402-0009,1402NEV0058B,Neversink Reservoir,204010403,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.655998,41.829201,dep,
+1702-0108,1702HIL1052,Hillview Reservoir,203010201,Atlantic-Long Island Sound,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.869499,40.9123,dep,
+1702-0102,1301JER1042,Jerome Park Reservoir,203010104,Atlantic-Long Island Sound,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.895203,40.877998,dep,
+1302-0041,1302BOG0086,Bog Brook Reservoir,203010102,Lower Hudson River,aa,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.584999,41.4147,dep,
+1302-0005,1302CRO0109,Cross River Reservoir,203010103,Lower Hudson River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.638298,41.255199,dep,
+1302-0024,1302GIL0061,Lake Gilead,203010102,Lower Hudson River,a(t),pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.675301,41.397999,dep,
+1302-0080,1302KIR0052,Kirk Lake,203010103,Lower Hudson River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.749802,41.385601,dep,
+1403-0002,1403PEP0358A,Pepacton Reservoir,204010204,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.913101,42.0807,dep,
+1404-0001,1404CAN0402A,Cannonsville Reservoir,204010102,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-75.280998,42.1063,dep,
+0104-0057,0104CLE0100,Clear Lake,412010202,Lake Erie-Niagara River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,ammonia; dissolved_oxygen; iron; manganese,1,NA,NA,-78.852997,42.553501,inactive,inactive
+0105-0025,0105BRO0160K,Brocton Reservoir,412010103,Lake Erie-Niagara River,a,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-79.426102,42.368099,inactive,inactive
+1101-0091,1101BON0115,Lake Bonita,202000305,Upper Hudson River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.7677,43.207401,inactive,inactive
+1306-0097,1306MOH0774,Mohonk Lake,202000706,Lower Hudson River,aa(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.157204,41.766201,inactive,inactive
+0302-0058,0300ONT0000,The Pond,414010102,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.695503,43.341,large lake,
+0303-0002,0300ONT0000,North Pond,414010204,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.18207,43.65615,large lake,
+0303-0002,0300ONT0000,North Pond,414010204,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.176002,43.6535,large lake,
+0303-0011,0300ONT0000,Chaumont Bay,415010202,Lake Ontario,c,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.195,44.081402,large lake,
+0303-0025,0300ONT0000,Guffin Bay,415010202,Lake Ontario,c,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+0301-0018,0300ONT0000,Round Pond,413000101,Lake Ontario,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+0705-0030,0705CAY0296,"Cayuga Lake, Northern End",414020112,Oswego-Seneca-Oneida,b(t),pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+0705-0014,0705SEN0369,"Seneca Lake, Main Lake, South",414020108,Oswego-Seneca-Oneida,b(t),pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+1001-0001,1000CHA0001,Cumberland Bay,415040816,Lake Champlain,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+1000-0001,1000CHA0001,"Lake Champlain, Main Lake, North",415040816,,a,pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,NA,NA,large lake,
+1000-0003,1000CHA0001,"Lake Champlain, Main Lake, South",415040806,,a,pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,NA,NA,large lake,
+1000-0004,1000CHA0001,"Lake Champlain, South Lake",415040803,,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
+0903-0076,0903TUP0109,Tupper Lake,415030504,Saint Lawrence River,a,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.4898,44.196899,neighboring lake has the intake,NY1600012
+1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.151001,42.216499,neighboring lake has the intake,NY1900033
+1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.151001,42.216499,neighboring lake has the intake,NY1900033
+0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.92796,43.71018,neighboring lake has the intake,NY2101609
+0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.915001,43.713001,neighboring lake has the intake,NY2101609
+0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.911598,43.721199,neighboring lake has the intake,NY2101609
+0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.899498,43.728802,neighboring lake has the intake,NY2101609
+0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.8181,43.758999,neighboring lake has the intake,NY2101609
+1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.025803,41.395199,neighboring lake has the intake,NY3503532
+1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0196,41.397598,neighboring lake has the intake,NY3503532
+1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0149,41.405201,neighboring lake has the intake,NY3503532
+1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.080902,41.325901,neighboring lake has the intake,NY3517676
+1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.076599,41.344799,neighboring lake has the intake,NY3517676
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.054901,41.290402,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.042396,41.317501,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.028801,41.310001,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.019402,41.319801,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0177,41.3185,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.016296,41.334999,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.015198,41.320499,neighboring lake has the intake,NY4317681
+1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.068901,41.294899,neighboring lake has the intake,NY4317681
+1003-0048,1003USA0114,Upper Saranac Lake,415040601,Lake Champlain,aa,pond,IR5_impaired,source_of_water_supply,IR3_fully-supported_unconfirmed,arsenic,1,NA,NA,-74.3004,44.301701,no intake visible,NY1613581
+0404-0030,0404NUN0084A,Nunda Reservoir,413000209,Genesee River,a,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-77.916298,42.540501,no intake visible,NY2501024
+0302-0035,0302COB0118,Cobbs Hill Reservoir,414010107,Lake Ontario,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-77.5718,43.1385,no intake visible,NY2704518
+0402-0072,0402RUS0033,Rush Reservoir,413000303,Genesee River,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-77.643402,43.016399,no intake visible,NY2704518
+1301-0182,1303UPP0223,Upper Reservoir,202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.005302,41.410702,no intake visible,NY3503526
+1101-0012,1101SAR0027,Saratoga Lake,202000304,Upper Hudson River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen,1,NA,NA,-73.741501,43.016701,no intake visible,NY4514100
+1311-0007,1311THO0274,Thompsons Lake,202000602,Lower Hudson River,a(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.042198,42.649601,off polygon,NY0118342
+0601-0012,0601GUI0188,Guilford Lake,205010109,Susquehanna River,aa,pond,IR5_impaired,source_of_water_supply,IR3_fully-supported_unconfirmed,nitrite,1,NA,NA,-75.499397,42.412899,off polygon,NY0801742
+1003-0072,1003MCK0088,McKenzie Pond,415040602,Lake Champlain,aa(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.083198,44.329102,off polygon,NY1510497
+1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.156601,42.207401,off polygon,NY1900033
+1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.153603,42.209202,off polygon,NY1900033
+1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.156601,42.207401,off polygon,NY1900033
+1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.153603,42.209202,off polygon,NY1900033
+1104-0115,1104ROU0137,Round Lake,202000206,Upper Hudson River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.012299,43.1455,off polygon,NY2800136
+1306-0075,1306MON0598,Monhagen Lake,202000704,Lower Hudson River,aa,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-74.454201,41.458401,off polygon,NY3503534
+1301-0129,1301TIO0152,Lake Tiorati,203010101,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.087898,41.2617,off polygon,NY3517682
+0601-0098,0601WIL0297,Wilber Lake,205010106,Susquehanna River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-75.051002,42.516701,off polygon,NY3800154
+0905-0007,0905CRA0309,Cranberry Lake,415030201,Saint Lawrence River,a(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.844498,44.160999,off polygon,NY4411830
+1201-0113,1201MAR0570,Mariaville Lake,202000411,Mohawk River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.1119,42.833698,off polygon,NY4630021
+1201-0113,1201MAR0570,Mariaville Lake,202000411,Mohawk River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.110901,42.8335,off polygon,NY4630021
+1005-0025,1005PIN0398,Pine Lake (Long Pond),415040801,Lake Champlain,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.4599,43.602001,off polygon,NY5700124
+1302-0022,1302WES0067,West Branch Reservoir,203010102,Lower Hudson River,aa,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.701599,41.415798,off polygon,NY7003493
+1201-0161,1201UWB0706,Spruce Lake,202000408,Mohawk River,aa,pond,IR3_needs-verification,source_of_water_supply,IR3_stressed_unconfirmed,chloride; nitrate_nitrite; ph,1,NA,NA,-74.857696,43.145599,off polygon ,NY2102308
+,1301FER0028C,Fergusons Lake,,,,,,,,,,,,-73.826401,41.0993,neighboring lake has the intake,NY5903472
+,1301UWB0028E,Unnamed Water,,,,,,,,,,,,-73.821999,41.097302,neighboring lake has the intake,NY5903472
+,1301UWB0028F,Unnamed Water,,,,,,,,,,,,-73.824203,41.096298,neighboring lake has the intake,NY5903472
+,0302UWB0008,Unnamed Water,,,,,,,,,,,,-77.605102,43.131199,no intake visible,NY2704518
+,0302UWB5258,Unnamed Water,,,,,,,,,,,,-77.525398,43.053799,no intake visible,NY2701047
+,0601UWB0395,Unnamed Water,,,,,,,,,,,,-74.969498,42.850399,no intake visible,NY3800156
+,0601UWB0396,Unnamed Water,,,,,,,,,,,,-74.967903,42.849899,no intake visible,NY3800156
+,1301MEL0331,Melzingah Reservoir,,,,,,,,,,,,-73.9673,41.472099,no intake visible,NY1302760
+,1301WIC0183A,Wiccopee Reservoir,,,,,,,,,,,,-73.822899,41.424999,no intake visible,NY5903452
+,1304BEA0345A,Beacon Reservoir,,,,,,,,,,,,-73.882599,41.490398,no intake visible,NY1302760
+,1601UWB1117A,Unnamed Water,,,,,,,,,,,,-73.555901,41.634499,no intake visible,NY1316987
+,0404DAN0092F,Dansville storage reservo,,,,,,,,,,,,-77.6436,42.569801,off polygon,NY2501015
+,0503HOR0035,Hornell Rs No 3,,,,,,,,,,,,-77.625298,42.391899,off polygon,NY5001215
+,1101DOR0098,Dority Reservoir,,,,,,,,,,,,-73.626999,43.263401,off polygon,NY5700119
+,1201UWB0662,Unnamed Water,,,,,,,,,,,,-74.459602,43.028599,off polygon,NY1700019
+,1301UWB0028D,Unnamed Water,,,,,,,,,,,,-73.8255,41.097,off polygon,NY5903472
+,1306UWB6000,Unnamed Water,,,,,,,,,,,,-74.078598,41.839001,off polygon,NY5503383
+,1307SAU0834,Saugerties Reservoir,,,,,,,,,,,,-74.017799,42.110199,off polygon,NY5503386
+,1404BLA0462A,Blazer Pond,,,,,,,,,,,,-74.599098,42.4333,off polygon,NY1200272
+,1404TRA5563,Travis Pond,,,,,,,,,,,,-74.605797,42.431801,off polygon,NY1200272
+,1501UWB1007A,Unnamed Water,,,,,,,,,,,,-74.209999,41.2383,off polygon,NY3503592
+,1702BRY1106,Bryam Lake Reservoir,,,,,,,,,,,,-73.691399,41.168201,off polygon,NY5903437

@@ -30,11 +30,11 @@ library(tidyverse)
 # library(tidyverse)
 library(knitr)
 #Reading in new database
-setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
 location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
 lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
 results<-read.csv("new_database/results.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
-setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
 
 ################################################
 #removed because more accuate list of PWS is from DOH now in our database
@@ -84,7 +84,7 @@ lake<-lake %>% select(LAKE_HISTORY_ID,PWS) %>% distinct() %>%
 locs<-location %>% select(LAKE_HISTORY_ID,LOCATION_HISTORY_ID,LOCATION_PWL_ID) %>% distinct()
 pws<-merge(lake,locs,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
 
-draft<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
 draft<-draft %>% 
   select(seg_id:parameter) %>% 
   distinct() %>% 
@@ -134,7 +134,7 @@ sites<-draft %>% select(LOCATION_PWL_ID,use_assessment)
 #Reading in new database
 setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
 location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
-setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
 coordinates<-location %>% filter(LOCATION_TYPE=="CENTROID"|LOCATION_NAME=="CHAUTAUQUA S CSLAP SITE 33.1") %>% select(LOCATION_PWL_ID,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE) %>% distinct()
 sites<-merge(sites,coordinates,by=c('LOCATION_PWL_ID'),all.x = TRUE)
 
@@ -160,6 +160,7 @@ merge unassessed PWS with PWL IDs with SDWIS ids
 Then Rank PWS by population served
 
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
 
 ####################################################
 #add PWLID
@@ -215,14 +216,14 @@ PopulationServed.Count
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 lmas<-draft
 #read in DWSP2 files
-wss<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+wss<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/water.systems.summary.csv")
 lmas<-merge(wss,lmas,by=c('PWS.ID'),all=TRUE)
 
 #too many individual facilities to be useful
 # rep<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/facility.report.csv")
 # lmas<-merge(rep,lmas,by=c('PWS.ID','PWS.Name','Primary.Source','PWS.Type','Owner.Type'),all=TRUE)
 
-viol<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+viol<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
 #colnames(viol)[(colnames(viol) %in% colnames(lmas))]
 lmas<-merge(lmas,viol,by=c("PWS.ID","PWS.Name","PWS.Type","Primary.Source","Counties.Served","Cities.Served","PopulationServed.Count","Number.of.Facilities"),all.x=TRUE)
 
@@ -245,7 +246,7 @@ DT::datatable(lmas, extensions = 'Buttons', options = list(dom = 'Bfrtip',button
 Map of PWS that don't have PWL IDs
 
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-draft2<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft2<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
 draft2<-draft2 %>% 
   select(seg_id:parameter) %>% 
   distinct() %>% 
@@ -260,7 +261,7 @@ sites<-draft2 %>% select(LAKE_HISTORY_ID,PWS)
 #Reading in new database
 setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
 location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
-setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
 coordinates<-location %>% filter(LOCATION_TYPE=="CENTROID") %>% 
   select(LAKE_HISTORY_ID,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE) %>% distinct()
 sites<-merge(sites,coordinates,by=c('LAKE_HISTORY_ID'),all.x = TRUE)

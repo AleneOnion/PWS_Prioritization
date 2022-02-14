@@ -1,0 +1,289 @@
+---
+title: "PWS_Prioritization"
+author: "Alene Onion"
+date: "10/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#  {.tabset}
+
+## Data set
+
+Here is the joined data set of SDWIS Information joined to waterbody assessments 
+NOTE: ASSESSMENT ARE DRAFT AND MUST NOT BE SHARED OUTSIDE THE DEPARTMENT
+
+Unfortunately, this file was too large to share in this format
+I will have to email it to you separately
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#merging lake id with the DOH ID
+
+rm(list=ls())
+#read in data
+#Script to read in new database
+library(tidyverse)
+library(ggmap)
+library(ggrepel)
+library(rgdal)
+library(sp)
+library(spatialEco)
+library(tidyverse)
+library(knitr)
+#Reading in new database
+setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+
+#merge with PWS layer in the data selector
+#############################
+#Now add counties
+pws<-readOGR("pws_layer","pws_10_2021")
+wipwl<-readOGR("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Lakes.Database/data/2020/data.requests/gis.data.selector","dec_wipwl_lakes")
+
+#change coords to web mercator for the map
+#all of our layers are NAD83 so have to convert to web mercator
+wipwl<-sp::spTransform(wipwl, sp::CRS("+proj=longlat +datum=WGS84 +no_defs"))
+pws<-sp::spTransform(pws, sp::CRS("+proj=longlat +datum=WGS84 +no_defs"))
+
+#do left join
+pws_merge<-point.in.poly(pws,wipwl)
+
+#convert attribute table to a data frame
+pws_data<-fortify(pws_merge@data)
+pws_data<-pws_data %>% select(WATER_SY_1,PWL_ID,WBCATGRY) %>% filter(!is.na(PWL_ID)) %>% distinct() %>% rename(PWS.ID=WATER_SY_1,LOCATION_PWL_ID=PWL_ID)
+lmas<-merge(location,pws_data,by=c('LOCATION_PWL_ID'),all.x=TRUE)
+lmas<-lmas %>% select(PWS.ID,LAKE_HISTORY_ID,WBCATGRY,LOCATION_WATERBODY_CLASSIFICATION,LOCATION_PWL_ID) %>% filter(!is.na(PWS.ID)) %>% distinct()
+
+#add lake name
+lake<-lake %>% select(LAKE_HISTORY_ID,LAKE_WATERBODY_NAME) %>% distinct()
+lmas<-merge(lmas,lake,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+
+#compare to those that Rebecca pulled previously
+previous<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/PWS.csv")
+previous<-merge(previous,lmas,by=c('LAKE_HISTORY_ID'),all=TRUE)
+previous<-previous %>% select(-LAKE_WATERBODY_NAME)
+previous<-merge(previous,lake,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+previous<-previous %>% filter(is.na(PWS.ID))
+
+rm(list=setdiff(ls(), c("lmas")))
+```
+
+Filtered to those that are:
+1. surface water ('Primary.Source')
+2. active ('Facility.Activity')
+3. Permanent ('Availability.Description')
+Other filters to consider:
+Is.Wholesaler
+Seller.Treatment.Description ("Filtered","Partially treated by seller","Not treated" )
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#read in DWSP2 files
+wss<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+lmas<-merge(wss,lmas,by=c('PWS.ID'),all=TRUE)
+
+rep<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/facility.report.csv")
+lmas<-merge(rep,lmas,by=c('PWS.ID','PWS.Name','Primary.Source','PWS.Type','Owner.Type'),all=TRUE)
+
+viol<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+#colnames(viol)[(colnames(viol) %in% colnames(lmas))]
+lmas<-merge(lmas,viol,by=c("PWS.ID","PWS.Name","PWS.Type","Primary.Source","Counties.Served","Cities.Served","PopulationServed.Count","Number.of.Facilities"),all.x=TRUE)
+
+lmas<-lmas %>% filter(!is.na(LAKE_HISTORY_ID)) %>% 
+  rename(Previous_Assessment=WBCATGRY) %>% distinct()
+#DT::datatable(lmas, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+lmas<-lmas %>% 
+  filter(Primary.Source=="Surface water",
+         Facility.Activity=="Active",
+         Availability.Description=="Permanent")
+
+rm(list=setdiff(ls(), c("lmas")))
+
+write.csv(lmas,file="Merged.assessment.and.sdwis.csv",row.names=FALSE)
+
+```
+
+## Classification and Assessment
+
+PLEASE NOTE the assessment data are DRAFT from Zach and Sarah and SHOULD NOT BE SHARED outside of the agency.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+draft<-read.csv("2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-draft %>% 
+  select(seg_id:parameter) %>% 
+  distinct() %>% 
+  rename(LOCATION_PWL_ID=seg_id)
+lmas<-merge(lmas,draft,by=c('LOCATION_PWL_ID'),all.x=TRUE)
+
+forplot<-lmas %>%
+  select(LOCATION_PWL_ID,class) %>% distinct() %>%
+  mutate(value=1,class_simple=substr(class,1,1)) 
+print(ggplot(forplot,aes(fill=class,x=class_simple)) +
+        geom_bar(psoition="dodge",state="identity") )
+
+```
+Now remove class B and C waters because we need to table those for now
+And plot the distribution of assessments for the source_water_supply use ONLY
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+lmas<-lmas %>% 
+  filter(!(class %in% c('b','b(t)','c'))) %>% distinct()
+
+print(ggplot(lmas %>% filter(use=="source_of_water_supply",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct(),aes(fill=use,x=use_assessment)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+kable(lmas %>% filter(use=="source_of_water_supply",use_assessment!='not-applicable') %>%
+               select(LOCATION_PWL_ID,use,use_assessment) %>% distinct() %>% group_by(use_assessment) %>% summarize(n=n()) %>% ungroup())
+```
+
+and plot how many assessments list dissolved oxygen as the parameter of concern. 
+Repeat for all major parameters
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#now plot the breakdown of the uses we don't have data for
+forplot<-lmas %>% 
+  filter(use=="source_of_water_supply") %>% select(LOCATION_PWL_ID,use_assessment,parameter) %>% distinct() %>% 
+    mutate(phosphorus=ifelse(grepl('phosphorus',parameter),1,0),
+         ph=ifelse((grepl('; ph',parameter)|grepl('ph;',parameter)|parameter=="ph"),1,0),
+         dissolved_oxygen=ifelse(grepl('dissolved_oxygen',parameter),1,0),
+         chloride=ifelse(grepl('chloride',parameter),1,0),
+         ammonia=ifelse(grepl('ammonia',parameter),1,0),
+         nitrate_nitrite=ifelse(grepl('nitrate',parameter)|grepl('nitrite',parameter)|grepl('nitrate/nitrite',parameter),1,0),
+         metals=ifelse(grepl('iron',parameter)|grepl('manganese',parameter)|grepl('magnesium',parameter)|grepl('copper',parameter),1,0),
+         arsenic=ifelse(grepl('arsenic',parameter),1,0),
+         sulfate=ifelse(grepl('sulfate',parameter),1,0),
+         mercury=ifelse(grepl('mercury',parameter),1,0),
+         toxics=ifelse(grepl('dioxin',parameter)|grepl('mirex',parameter)|grepl('pcbs',parameter)|grepl('ddt',parameter)|grepl('chlordane',parameter)|grepl('cadmium',parameter)|grepl('pcbs_other_toxics',parameter)|grepl('phenolic_compounds',parameter),1,0),
+         fecal_coliform=ifelse(grepl('fecal_coliform',parameter),1,0),
+         solids=ifelse(grepl('silt_sediment',parameter)|grepl('total_dissolved_solids',parameter),1,0),
+         problem_species=ifelse(grepl('problem_species',parameter)|grepl('algal_weed_growth',parameter)|grepl('aquatic_weeds',parameter),1,0),
+         water_level_flow=ifelse(grepl('water_level_flow',parameter),1,0),
+         no_data=ifelse(grepl('No_Data',parameter),1,0)) %>% 
+  select(-parameter) %>% 
+  gather(parameter_simple,value,-LOCATION_PWL_ID,-use_assessment) %>% 
+  filter(value!=0) %>% 
+  select(-value) %>% distinct() %>% 
+  mutate(use="source_water")
+
+print(ggplot(forplot %>% filter(parameter_simple!='no_data') %>% select(LOCATION_PWL_ID,parameter_simple,use_assessment) %>% distinct(),aes(fill=parameter_simple,x=use_assessment)) +
+        geom_bar(position="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+## Analysis of SDWIS Data
+
+Should we be including NYC reservoirs? Do we assess these?
+
+Filtered to only those that were unassessed or needed more data
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+lmas2<-lmas %>% 
+  filter(use=="source_of_water_supply",
+         use_assessment %in% c("IR3_impaired_unconfirmed","IR3_stressed_unconfirmed",
+                               "IR3_unassessed","IR3_fully-supported_unconfirmed")) %>% distinct()
+
+```
+
+
+Populations served (Removing NYC reservoirs)
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#parameters to examine:
+#Population.Served.Count
+#Service.Connections.Count
+#Filtration.Status.Description
+#Number.of.Violations
+
+#population served
+pops<-lmas2 %>% 
+  filter(Population.Served.Count<8271000) %>% 
+  select(LOCATION_PWL_ID,Population.Served.Count) %>% distinct() %>% 
+  mutate(value='x')
+print(ggplot(pops ,aes(y=Population.Served.Count)) +
+        geom_boxplot() +
+        theme(axis.title.x = element_blank(),legend.position = "none"))
+```
+
+Service Connections (again removing NYC reservoirs)
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#parameters to examine:
+#Service.Connections.Count
+#Filtration.Status.Description
+#Number.of.Violations
+
+#population served
+pops<-lmas2 %>% 
+  filter(Service.Connections.Count<727058) %>% 
+  select(LOCATION_PWL_ID,Service.Connections.Count) %>% distinct() %>% 
+  mutate(value='x')
+print(ggplot(pops ,aes(y=Service.Connections.Count)) +
+        geom_boxplot() +
+        theme(axis.title.x = element_blank(),legend.position = "none"))
+```
+Filtration Status
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#parameters to examine:
+#Filtration.Status.Description
+#Number.of.Violations
+
+#population served
+pops<-lmas2 %>% 
+  #filter(Service.Connections.Count<727058) %>% 
+  select(LOCATION_PWL_ID,Filtration.Status.Description) %>% distinct() %>% 
+  mutate(value='x')
+print(ggplot(pops,aes(fill=value,x=Filtration.Status.Description)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+Owner Type
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#parameters to examine:
+#Filtration.Status.Description
+#Number.of.Violations
+
+#population served
+pops<-lmas2 %>% 
+  #filter(Service.Connections.Count<727058) %>% 
+  select(LOCATION_PWL_ID,Owner.Type) %>% distinct() %>% 
+  mutate(value='x')
+print(ggplot(pops,aes(fill=value,x=Owner.Type)) +
+        geom_bar(psoition="dodge",state="identity") +
+        theme(axis.title.x = element_blank(),legend.position = "none",
+              axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)))
+
+```
+
+Number of Violations
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#parameters to examine:
+#Service.Connections.Count
+#Filtration.Status.Description
+#Number.of.Violations
+
+#population served
+pops<-lmas2 %>% 
+  #filter(Service.Connections.Count<727058) %>% 
+  select(LOCATION_PWL_ID,Number.of.Violations) %>% distinct() %>% 
+  mutate(value='x')
+print(ggplot(pops ,aes(y=Number.of.Violations)) +
+        geom_boxplot() +
+        theme(axis.title.x = element_blank(),legend.position = "none"))
+```

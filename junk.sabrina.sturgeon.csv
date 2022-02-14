@@ -1,0 +1,4 @@
+"LOCATION_PWL_ID","waterbody","huc_10","basin_name","class","water_type","segment_assessment","use","use_assessment","parameter","value"
+"1306-0037","Sturgeon Pond",202000704,"Lower Hudson River","b","pond","IR5_impaired","fishing","IR5_impaired_confirmed","dissolved_oxygen",1
+"1306-0037","Sturgeon Pond",202000704,"Lower Hudson River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","dissolved_oxygen; phosphorus",1
+"1306-0037","Sturgeon Pond",202000704,"Lower Hudson River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","dissolved_oxygen; phosphorus",1
