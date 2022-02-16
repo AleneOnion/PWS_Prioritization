@@ -1,99 +1,251 @@
-LOCATION_PWL_ID,LAKE_HISTORY_ID,waterbody,huc_10,basin_name,class,water_type,segment_assessment,use,use_assessment,parameter,value,PWS.ID,WBCATGRY,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE,Notes,ID
-0902-0034,0902UCH0002,Upper Chateaugay Lake,415030801,Saint Lawrence River,b(t),pond,IR4a_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.967598,44.7412,appears Ok,NY0922982
-1002-0009,1002CHA0020,Chazy Lake,415040815,Lake Champlain,aa(t),pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen,1,NA,NA,-73.819801,44.738998,appears Ok,NY0930189
-1308-0014,1308TAG0869,Lake Taghkanic,202000610,Lower Hudson River,b(ts),pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.709503,42.091202,appears Ok,NY1011778
-0801-0281,0801STI0493,Stillwater Reservoir,415010110,Black River,c(t),pond,IR4a_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.9543,43.912701,appears Ok,NY2130052
-1501-0053,1501STA1011,Lake Stahahe,203010302,Hackensack-Ramapo Rivers,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.160301,41.237801,appears Ok,NY3517675
-1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.096001,41.310299,appears Ok,NY3517676
-0302-0020,0302SOD0096,Sodus Bay,414010104,Lake Ontario,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.958504,43.248299,appears Ok,NY5830005
-1402-0009,1402NEV0058B,Neversink Reservoir,204010403,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.655998,41.829201,dep,
-1702-0108,1702HIL1052,Hillview Reservoir,203010201,Atlantic-Long Island Sound,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.869499,40.9123,dep,
-1702-0102,1301JER1042,Jerome Park Reservoir,203010104,Atlantic-Long Island Sound,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.895203,40.877998,dep,
-1302-0041,1302BOG0086,Bog Brook Reservoir,203010102,Lower Hudson River,aa,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.584999,41.4147,dep,
-1302-0005,1302CRO0109,Cross River Reservoir,203010103,Lower Hudson River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.638298,41.255199,dep,
-1302-0024,1302GIL0061,Lake Gilead,203010102,Lower Hudson River,a(t),pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.675301,41.397999,dep,
-1302-0080,1302KIR0052,Kirk Lake,203010103,Lower Hudson River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-73.749802,41.385601,dep,
-1403-0002,1403PEP0358A,Pepacton Reservoir,204010204,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.913101,42.0807,dep,
-1404-0001,1404CAN0402A,Cannonsville Reservoir,204010102,Delaware River,aa(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-75.280998,42.1063,dep,
-0104-0057,0104CLE0100,Clear Lake,412010202,Lake Erie-Niagara River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,ammonia; dissolved_oxygen; iron; manganese,1,NA,NA,-78.852997,42.553501,inactive,inactive
-0105-0025,0105BRO0160K,Brocton Reservoir,412010103,Lake Erie-Niagara River,a,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-79.426102,42.368099,inactive,inactive
-1101-0091,1101BON0115,Lake Bonita,202000305,Upper Hudson River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.7677,43.207401,inactive,inactive
-1306-0097,1306MOH0774,Mohonk Lake,202000706,Lower Hudson River,aa(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.157204,41.766201,inactive,inactive
-0302-0058,0300ONT0000,The Pond,414010102,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.695503,43.341,large lake,
-0303-0002,0300ONT0000,North Pond,414010204,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.18207,43.65615,large lake,
-0303-0002,0300ONT0000,North Pond,414010204,Lake Ontario,b,pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.176002,43.6535,large lake,
-0303-0011,0300ONT0000,Chaumont Bay,415010202,Lake Ontario,c,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-76.195,44.081402,large lake,
-0303-0025,0300ONT0000,Guffin Bay,415010202,Lake Ontario,c,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-0301-0018,0300ONT0000,Round Pond,413000101,Lake Ontario,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-0705-0030,0705CAY0296,"Cayuga Lake, Northern End",414020112,Oswego-Seneca-Oneida,b(t),pond,IR3_needs-verification,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-0705-0014,0705SEN0369,"Seneca Lake, Main Lake, South",414020108,Oswego-Seneca-Oneida,b(t),pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-1001-0001,1000CHA0001,Cumberland Bay,415040816,Lake Champlain,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-1000-0001,1000CHA0001,"Lake Champlain, Main Lake, North",415040816,,a,pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,NA,NA,large lake,
-1000-0003,1000CHA0001,"Lake Champlain, Main Lake, South",415040806,,a,pond,IR5_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,NA,NA,large lake,
-1000-0004,1000CHA0001,"Lake Champlain, South Lake",415040803,,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,NA,NA,large lake,
-0903-0076,0903TUP0109,Tupper Lake,415030504,Saint Lawrence River,a,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.4898,44.196899,neighboring lake has the intake,NY1600012
-1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.151001,42.216499,neighboring lake has the intake,NY1900033
-1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.151001,42.216499,neighboring lake has the intake,NY1900033
-0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.92796,43.71018,neighboring lake has the intake,NY2101609
-0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.915001,43.713001,neighboring lake has the intake,NY2101609
-0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.911598,43.721199,neighboring lake has the intake,NY2101609
-0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.899498,43.728802,neighboring lake has the intake,NY2101609
-0801-0373,0801UWB0782,"Fulton Chain Lakes, First thru Fourth Lk",415010105,Black River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; ph,1,NA,NA,-74.8181,43.758999,neighboring lake has the intake,NY2101609
-1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.025803,41.395199,neighboring lake has the intake,NY3503532
-1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0196,41.397598,neighboring lake has the intake,NY3503532
-1301-0181,1303ALE0222D,"Arthurs, Sphagnum, Tamarack Ponds and...",202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0149,41.405201,neighboring lake has the intake,NY3503532
-1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.080902,41.325901,neighboring lake has the intake,NY3517676
-1301-0165,1301SUM0193,"Bull Pond, Barnes Lake, Summit Lake",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.076599,41.344799,neighboring lake has the intake,NY3517676
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.054901,41.290402,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.042396,41.317501,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.028801,41.310001,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.019402,41.319801,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.0177,41.3185,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.016296,41.334999,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.015198,41.320499,neighboring lake has the intake,NY4317681
-1301-0056,1301QUE0184A,"Queensboro Lk, Turkey Hill Pd, others",202000805,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.068901,41.294899,neighboring lake has the intake,NY4317681
-1003-0048,1003USA0114,Upper Saranac Lake,415040601,Lake Champlain,aa,pond,IR5_impaired,source_of_water_supply,IR3_fully-supported_unconfirmed,arsenic,1,NA,NA,-74.3004,44.301701,no intake visible,NY1613581
-0404-0030,0404NUN0084A,Nunda Reservoir,413000209,Genesee River,a,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-77.916298,42.540501,no intake visible,NY2501024
-0302-0035,0302COB0118,Cobbs Hill Reservoir,414010107,Lake Ontario,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-77.5718,43.1385,no intake visible,NY2704518
-0402-0072,0402RUS0033,Rush Reservoir,413000303,Genesee River,c,pond,IR3_unassessed,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-77.643402,43.016399,no intake visible,NY2704518
-1301-0182,1303UPP0223,Upper Reservoir,202000804,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.005302,41.410702,no intake visible,NY3503526
-1101-0012,1101SAR0027,Saratoga Lake,202000304,Upper Hudson River,a,pond,IR5_impaired,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen,1,NA,NA,-73.741501,43.016701,no intake visible,NY4514100
-1311-0007,1311THO0274,Thompsons Lake,202000602,Lower Hudson River,a(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.042198,42.649601,off polygon,NY0118342
-0601-0012,0601GUI0188,Guilford Lake,205010109,Susquehanna River,aa,pond,IR5_impaired,source_of_water_supply,IR3_fully-supported_unconfirmed,nitrite,1,NA,NA,-75.499397,42.412899,off polygon,NY0801742
-1003-0072,1003MCK0088,McKenzie Pond,415040602,Lake Champlain,aa(t),pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.083198,44.329102,off polygon,NY1510497
-1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.156601,42.207401,off polygon,NY1900033
-1202-0069,1202TAN0655A,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.153603,42.209202,off polygon,NY1900033
-1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.156601,42.207401,off polygon,NY1900033
-1202-0069,1202TAN0655B,Onteora Pond/Tannersville Reservoirs,202000501,Mohawk River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.153603,42.209202,off polygon,NY1900033
-1104-0115,1104ROU0137,Round Lake,202000206,Upper Hudson River,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.012299,43.1455,off polygon,NY2800136
-1306-0075,1306MON0598,Monhagen Lake,202000704,Lower Hudson River,aa,pond,IR3_needs-verification,source_of_water_supply,IR3_impaired_unconfirmed,dissolved_oxygen; iron; manganese,1,NA,NA,-74.454201,41.458401,off polygon,NY3503534
-1301-0129,1301TIO0152,Lake Tiorati,203010101,Lower Hudson River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.087898,41.2617,off polygon,NY3517682
-0601-0098,0601WIL0297,Wilber Lake,205010106,Susquehanna River,a,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-75.051002,42.516701,off polygon,NY3800154
-0905-0007,0905CRA0309,Cranberry Lake,415030201,Saint Lawrence River,a(t),pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-74.844498,44.160999,off polygon,NY4411830
-1201-0113,1201MAR0570,Mariaville Lake,202000411,Mohawk River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.1119,42.833698,off polygon,NY4630021
-1201-0113,1201MAR0570,Mariaville Lake,202000411,Mohawk River,b,pond,IR5_impaired,source_of_water_supply,not-applicable,not-applicable,1,NA,NA,-74.110901,42.8335,off polygon,NY4630021
-1005-0025,1005PIN0398,Pine Lake (Long Pond),415040801,Lake Champlain,aa,pond,IR3_unassessed,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.4599,43.602001,off polygon,NY5700124
-1302-0022,1302WES0067,West Branch Reservoir,203010102,Lower Hudson River,aa,pond,IR4a_impaired,source_of_water_supply,IR3_unassessed,No_Data,1,NA,NA,-73.701599,41.415798,off polygon,NY7003493
-1201-0161,1201UWB0706,Spruce Lake,202000408,Mohawk River,aa,pond,IR3_needs-verification,source_of_water_supply,IR3_stressed_unconfirmed,chloride; nitrate_nitrite; ph,1,NA,NA,-74.857696,43.145599,off polygon ,NY2102308
-,1301FER0028C,Fergusons Lake,,,,,,,,,,,,-73.826401,41.0993,neighboring lake has the intake,NY5903472
-,1301UWB0028E,Unnamed Water,,,,,,,,,,,,-73.821999,41.097302,neighboring lake has the intake,NY5903472
-,1301UWB0028F,Unnamed Water,,,,,,,,,,,,-73.824203,41.096298,neighboring lake has the intake,NY5903472
-,0302UWB0008,Unnamed Water,,,,,,,,,,,,-77.605102,43.131199,no intake visible,NY2704518
-,0302UWB5258,Unnamed Water,,,,,,,,,,,,-77.525398,43.053799,no intake visible,NY2701047
-,0601UWB0395,Unnamed Water,,,,,,,,,,,,-74.969498,42.850399,no intake visible,NY3800156
-,0601UWB0396,Unnamed Water,,,,,,,,,,,,-74.967903,42.849899,no intake visible,NY3800156
-,1301MEL0331,Melzingah Reservoir,,,,,,,,,,,,-73.9673,41.472099,no intake visible,NY1302760
-,1301WIC0183A,Wiccopee Reservoir,,,,,,,,,,,,-73.822899,41.424999,no intake visible,NY5903452
-,1304BEA0345A,Beacon Reservoir,,,,,,,,,,,,-73.882599,41.490398,no intake visible,NY1302760
-,1601UWB1117A,Unnamed Water,,,,,,,,,,,,-73.555901,41.634499,no intake visible,NY1316987
-,0404DAN0092F,Dansville storage reservo,,,,,,,,,,,,-77.6436,42.569801,off polygon,NY2501015
-,0503HOR0035,Hornell Rs No 3,,,,,,,,,,,,-77.625298,42.391899,off polygon,NY5001215
-,1101DOR0098,Dority Reservoir,,,,,,,,,,,,-73.626999,43.263401,off polygon,NY5700119
-,1201UWB0662,Unnamed Water,,,,,,,,,,,,-74.459602,43.028599,off polygon,NY1700019
-,1301UWB0028D,Unnamed Water,,,,,,,,,,,,-73.8255,41.097,off polygon,NY5903472
-,1306UWB6000,Unnamed Water,,,,,,,,,,,,-74.078598,41.839001,off polygon,NY5503383
-,1307SAU0834,Saugerties Reservoir,,,,,,,,,,,,-74.017799,42.110199,off polygon,NY5503386
-,1404BLA0462A,Blazer Pond,,,,,,,,,,,,-74.599098,42.4333,off polygon,NY1200272
-,1404TRA5563,Travis Pond,,,,,,,,,,,,-74.605797,42.431801,off polygon,NY1200272
-,1501UWB1007A,Unnamed Water,,,,,,,,,,,,-74.209999,41.2383,off polygon,NY3503592
-,1702BRY1106,Bryam Lake Reservoir,,,,,,,,,,,,-73.691399,41.168201,off polygon,NY5903437
+"LAKE_HISTORY_ID","LOCATION_PWL_ID","PWS.ID"
+"0100ERI5000",NA,"NY1400422"
+"0100ERI5000",NA,"NY1400443"
+"0100ERI5000",NA,"NY0617697"
+"0100ERI5000",NA,"NY0600360"
+"0100ERI5000",NA,"NY0611671"
+"0102AKR0013","0102-0033","NY1400397"
+"0102ATT0020","0102-0039","NY6000607"
+"0105FRE0160","0105-0021","NY0600364"
+"0105MIN0165A","0105-0029","NY0615782"
+"0105UWB0166M",NA,"NY0600372"
+"0202CHA0122","0202-0072","NY0600381"
+"0202CHA0122","0202-0072","NY0602924"
+"0300ONT0000","0303-0022","NY2220914"
+"0300ONT0000","0303-0022","NY2202343"
+"0300ONT0000","0303-0022","NY3304336"
+"0300ONT0000","0303-0022","NY2701047"
+"0300ONT0000","0303-0022","NY4404391"
+"0300ONT0000","0303-0022","NY2218318"
+"0300ONT0000","0303-0022","NY2730003"
+"0300ONT0000","0303-0022","NY4421262"
+"0300ONT0000","0303-0022","NY2202333"
+"0300ONT0000","0303-0022","NY2211789"
+"0300ONT0000","0303-0022","NY4430161"
+"0300ONT0000","0303-0022","NY2230111"
+"0300ONT0000","0303-0022","NY4425001"
+"0300ONT0000","0303-0022","NY2209487"
+"0300ONT0000","0303-0022","NY5801258"
+"0300ONT0000","0303-0022","NY2230027"
+"0300ONT0000","0303-0022","NY2202329"
+"0300ONT0000","0303-0022","NY2213144"
+"0300ONT0000","0303-0022","NY5801241"
+"0300ONT0000","0303-0022","NY2202335"
+"0300ONT0000","0303-0022","NY2211794"
+"0300ONT0000","0303-0022","NY2202072"
+"0300ONT0000","0303-0022","NY2208814"
+"0300ONT0000","0303-0022","NY2213150"
+"0300ONT0000","0303-0022","NY3704361"
+"0300ONT0000","0303-0022","NY2230004"
+"0300ONT0000","0303-0022","NY2208618"
+"0300ONT0000","0303-0022","NY2208212"
+"0300ONT0000","0303-0022","NY2208203"
+"0300ONT0000","0303-0022","NY2208811"
+"0300ONT0000","0303-0022","NY2219170"
+"0300ONT0000","0303-0022","NY2230097"
+"0300ONT0000","0303-0022","NY3600599"
+"0300ONT0000","0303-0022","NY4404394"
+"0300ONT0000","0303-0022","NY2211795"
+"0300ONT0000","0303-0022","NY4430133"
+"0300ONT0000","0303-0022","NY5801245"
+"0300ONT0000","0303-0022","NY3600596"
+"0300ONT0000","0303-0022","NY2211796"
+"0300ONT0000","0303-0022","NY2230124"
+"0300ONT0000","0303-0022","NY5801233"
+"0300ONT0000","0303-0022","NY2211797"
+"0302COB0118","0302-0035","NY2704518"
+"0302RESXXX1",NA,"NY5822366"
+"0302SOD0096","0302-0020","NY5830005"
+"0402CON0067","0402-0004","NY2501017"
+"0402CON0067","0402-0004","NY2501012"
+"0402UWB0030",NA,"NY6000618"
+"0403SIL0115","0403-0002","NY6000613"
+"0403SIL0115","0403-0002","NY2501023"
+"0404DAN0092F",NA,"NY2501015"
+"0404NUN0084A","0404-0030","NY2501024"
+"0501ELM0019",NA,"NY0701008"
+"0503HOR0034","0503-0031","NY5001215"
+"0601ALL0405","0601-0117","NY3800156"
+"0601CHE0213","0601-0013","NY0801745"
+"0601GUI0188","0601-0012","NY0801742"
+"0601LOW0295","0601-0097","NY3800154"
+"0601OTS0404","0601-0033","NY3800145"
+"0601OTS0404","0601-0033","NY3821952"
+"0601OTS0404","0601-0033","NY3807994"
+"0601OTS0404","0601-0033","NY3830149"
+"0601OTS0404","0601-0033","NY3813664"
+"0601OTS0404","0601-0033","NY3807993"
+"0703ONE0073","0703-0071","NY2602381"
+"0704CAN0286","0704-0001","NY3401164"
+"0704CAN0286","0704-0001","NY5801232"
+"0704CAN0286","0704-0001","NY3430026"
+"0704CAN0286","0704-0001","NY3401150"
+"0704CAN0286","0704-0001","NY3400784"
+"0704CAN0286","0704-0001","NY3401170"
+"0704CAN0286","0704-0001","NY5801235"
+"0705CAY0296","0705-0040","NY0508759"
+"0705CAY0296","0705-0040","NY5404423"
+"0705CAY0296","0705-0040","NY4901198"
+"0705CAY0296","0705-0040","NY0512920"
+"0705CAY0296","0705-0040","NY0530002"
+"0705KEU0388","0705-0003","NY6120748"
+"0705KEU0388","0705-0003","NY5010194"
+"0705KEU0388","0705-0003","NY5000663"
+"0705KEU0388","0705-0003","NY5001223"
+"0705KEU0388","0705-0003","NY5006019"
+"0705KEU0388","0705-0003","NY5030089"
+"0705KEU0388","0705-0003","NY6101263"
+"0705KEU0388","0705-0003","NY5006021"
+"0705SEN0369","0705-0014","NY4910589"
+"0705SEN0369","0705-0014","NY3401156"
+"0705SEN0369","0705-0014","NY4811938"
+"0705SEN0369","0705-0014","NY4814162"
+"0705SEN0369","0705-0014","NY4801188"
+"0705SEN0369","0705-0014","NY4901195"
+"0705SEN0369","0705-0014","NY6112874"
+"0705SEN0369","0705-0014","NY6112885"
+"0705SEN0369","0705-0014","NY4901199"
+"0705UWB0340A",NA,"NY5404416"
+"0706OWA0212","0706-0009","NY0501721"
+"0706OWA0212","0706-0009","NY0501710"
+"0707SKA0193","0707-0004","NY3304334"
+"0707SKA0193","0707-0004","NY3302017"
+"0801LOW0594",NA,"NY2402365"
+"0801STI0493","0801-0281","NY2130052"
+"0801UWB0782","0801-0373","NY2101609"
+"0901STL5150",NA,"NY4404390"
+"0902UCH0002","0902-0034","NY0922982"
+"0903BLU0307","0903-0204","NY2000135"
+"0903LSI0182","0903-0158","NY1600012"
+"0903RAQ0293","0903-0081","NY2030028"
+"0903RAQ0293","0903-0081","NY2011007"
+"0905CRA0309","0905-0007","NY4411830"
+"0905STA0281","0905-0180","NY4404398"
+"0906CAR0050",NA,"NY2202334"
+"1000CHA0001","1001-0001","NY1520370"
+"1000CHA0001","1001-0001","NY1500278"
+"1000CHA0001","1001-0001","NY1500299"
+"1000CHA0001","1001-0001","NY1512226"
+"1002CHA0020","1002-0009","NY0930189"
+"1003MEA5064","1003-0114","NY0900217"
+"1003RAY0091",NA,"NY1510497"
+"1003USA0114","1003-0048","NY1613581"
+"1004BUT0218","1004-0053","NY1500283"
+"1004PLA0254","1004-0068","NY1500284"
+"1004UWB0212",NA,"NY0900216"
+"1005BAR0338","1001-0027","NY1500287"
+"1005BUT0452","1005-0050","NY5600104"
+"1005DOL0424","1005-0038","NY5704191"
+"1005PIN0398","1005-0025","NY5700124"
+"1006EDG0381","1006-0028","NY5600101"
+"1006GEO0367","1006-0016","NY5615133"
+"1006GEO0367","1006-0016","NY1500293"
+"1006GEO0367","1006-0016","NY5615107"
+"1006GEO0367","1006-0016","NY5615135"
+"1006GEO0367","1006-0016","NY5605392"
+"1006GEO0367","1006-0016","NY5600106"
+"1006GEO0367","1006-0016","NY5618220"
+"1006GEO0367","1006-0016","NY5615221"
+"1006GEO0367","1006-0016","NY5630124"
+"1006GEO0367","1006-0016","NY5615105"
+"1006GEO0367","1006-0016","NY5615115"
+"1006GEO0367","1006-0016","NY5606467"
+"1006GEO0367","1006-0016","NY5600105"
+"1006GEO0367","1006-0016","NY5615110"
+"1006GEO0367","1006-0016","NY5618139"
+"1006GEO0367","1006-0016","NY5621608"
+"1006GEO0367","1006-0016","NY5618359"
+"1006GEO0367","1006-0016","NY5622708"
+"1006GEO0367","1006-0016","NY5615223"
+"1006GEO0367","1006-0016","NY5612665"
+"1101DOR0098",NA,"NY5700119"
+"1101LOU0035","1101-0068","NY4500168"
+"1101MEC1083","1101-0059","NY4500166"
+"1101SAR0027","1101-0012","NY4514100"
+"1102TOM1095","1102-0006","NY4100050"
+"1104CAM0152","1104-0125","NY1700018"
+"1104FOR0340","1104-0193","NY5612692"
+"1104IRE0136A","1104-0114","NY2800136"
+"1201COL0670",NA,"NY1700019"
+"1201DOL0709",NA,"NY2102299"
+"1201FON0678A","1201-0123","NY2800138"
+"1201FOR0681",NA,"NY2800139"
+"1201KLO0708","1201-0160","NY2102308"
+"1201MAR0570","1201-0113","NY4630021"
+"1201SPRXXX1",NA,"NY2800137"
+"1201STO0503A","1201-0098","NY0100198"
+"1201UWB0940A","1201-0198","NY2102307"
+"1202COB0583","1202-0015","NY4700094"
+"1202ENG0589","1202-0009","NY4700099"
+"1202SCH0638A","1202-0012","NY7003493"
+"1202TAN0655A","1202-0069","NY1900033"
+"1202UWB0579","1202-0016","NY4700093"
+"1202UWB0599","1202-0038","NY4700097"
+"1203HER0798F",NA,"NY2102306"
+"1203HIN0799","1203-0022","NY3202411"
+"1301ALC0185","1301-0232","NY0100189"
+"1301BOG0200","1301-0173","NY3503532"
+"1301BRO0155","1301-0229","NY1902012"
+"1301CAM0163A",NA,"NY5903452"
+"1301CHA0341A","1301-0190","NY3503578"
+"1301CHO0437","1301-0208","NY5503015"
+"1301COX0152B","1301-0227","NY1900027"
+"1301FER0028C",NA,"NY5903472"
+"1301FIR0150A","1301-0128","NY4303673"
+"1301LUS0204","1301-0174","NY3511887"
+"1301MEL0331","1301-0183","NY1302760"
+"1301POP0191","1301-0164","NY3511339"
+"1301QUE0184A","1301-0056","NY4317681"
+"1301SLE6666","1301-0059","NY1915264"
+"1301STI0187A","1301-0166","NY3530232"
+"1301STI0187A","1301-0166","NY3511338"
+"1301SUM0193","1301-0165","NY3517676"
+"1301TIO0152","1301-0129","NY3517682"
+"1301UWB0215B",NA,"NY3903652"
+"1301UWB0413",NA,"NY5503377"
+"1301UWB0438P",NA,"NY5503368"
+"1301UWB5426",NA,NA
+"1301VLY0262A","1301-0234","NY0100191"
+"1302AMA0050","1302-0044","NY5903489"
+"1302GLE0074","1302-0025","NY3903641"
+"1302IND0042B","1302-0067","NY5903451"
+"1302MAH0053","1302-0007","NY3903644"
+"1302MID0062","1302-0009","NY3905680"
+"1303ALE0222D","1301-0181","NY3503526"
+"1303BRO0226A","1303-0013","NY3503580"
+"1303BRO0226A","1303-0013","NY3503549"
+"1303WAL0257","1303-0004","NY3503524"
+"1306GLE0668",NA,"NY3503527"
+"1306HIG0492","1306-0060","NY3503534"
+"1306UWB0683",NA,"NY3503561"
+"1306UWB6000",NA,"NY5503383"
+"1306UWB6070",NA,"NY5503379"
+"1307ASH0848","1307-0004","NY5530001"
+"1307COO0839","1307-0022","NY5503374"
+"1307SAU0834",NA,"NY5503386"
+"1308TAG0869","1308-0014","NY1011778"
+"1309HOL0913","1309-0007","NY1900024"
+"1309POT0925A","1309-0024","NY1900026"
+"1309UWB6509",NA,"NY1904281"
+"1311DEL0292","1311-0023","NY4600064"
+"1311THO0274","1311-0007","NY0118342"
+"1311WAT0270","1311-0001","NY0110127"
+"1311WAT0270","1311-0001","NY0100205"
+"1402EAS0055","1402-0060","NY5203348"
+"1402KIA0044","1402-0003","NY5203344"
+"1402KIA0044","1402-0003","NY5203337"
+"1402LOU0040","1402-0049","NY5203346"
+"1402RE10003","1402-0027","NY3503554"
+"1403LIL0311","1403-0067","NY5203329"
+"1404BLA0462A",NA,"NY1200272"
+"1501MOM1010","1501-0002","NY3503535"
+"1501STA1011","1501-0053","NY3517675"
+"1501STE1021C","1501-0066","NY3512132"
+"1501STE1025","1501-0068","NY3512133"
+"1501TUX1007","1501-0050","NY3503557"
+"1501UWB1007A",NA,"NY3503592"
+"1601UWB1117A",NA,"NY1316987"
+"1702BAR1108","1701-0285","NY5103294"
+"1702BRY1106","1702-0134","NY5903437"
+"1702KEN1063","1702-0059","NY5903488"
+"1702KEN1063","1702-0059","NY5903435"

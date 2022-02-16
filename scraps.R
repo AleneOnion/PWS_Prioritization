@@ -97,3 +97,35 @@ junk<-location %>%
 rmarkdown::render("PWS_for_TMDLs.Rmd")
 
 rmarkdown::render("PWS_unconfirmed_priorities.Rmd")
+rmarkdown::render("PWS_screening_priorities.Rmd")
+
+
+lake<-lake %>% select(LAKE_HISTORY_ID,PWS) %>% distinct() %>% 
+  mutate(PWS=toupper(PWS)) %>% 
+  filter(PWS=="YES")
+locs<-location %>% select(LAKE_HISTORY_ID,LOCATION_HISTORY_ID,LOCATION_PWL_ID) %>% distinct()
+pws<-merge(lake,locs,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+
+
+rmarkdown::render("PWS_unconfirmed_priorities.Rmd")
+rmarkdown::render("PWS_screening_priorities.Rmd")
+
+
+
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
+lake<-lake %>% select(LAKE_HISTORY_ID,PWS) %>% distinct() %>% 
+  mutate(PWS=toupper(PWS)) %>% 
+  filter(PWS=="YES")
+pws<-lake
+doh<-read.csv("data.requests/PWS_IDs.csv")
+doh<-doh %>%
+  select(LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+pws<-merge(pws,doh,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+pws<-pws %>% filter(is.na(PWS.ID))
+
+
+rmarkdown::render("PWS_unconfirmed_priorities.Rmd")
+rmarkdown::render("PWS_screening_priorities.Rmd")
