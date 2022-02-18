@@ -1,0 +1,378 @@
+---
+title: "PWS_Prioritization"
+author: "Alene Onion, Charlie Stoll"
+date: "2/16/22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#  {.tabset}
+
+The following tabs list the lakes and streams we intend to screen (Sc.) in 2022/23 as well those that we are considering for intensive sampling (Int).
+We are requesting input from DOH on those waterbodies that would be a priority from these lists for intensive sampling.
+
+## Sc. PWS Lakes
+
+Lakes with public water supply intakes that we are intending to screen 2022-23. TO be clear, there are multiple intakes on many of these waterbodies.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#merging lake id with the DOH ID
+
+rm(list=ls())
+#read in data
+#Script to read in new database
+library(tidyverse)
+# library(ggmap)
+# library(ggrepel)
+# library(rgdal)
+# library(sp)
+# library(spatialEco)
+# library(tidyverse)
+library(knitr)
+#Reading in new database
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
+setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
+setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+
+
+lake<-lake %>% select(LAKE_HISTORY_ID,PWS) %>% distinct() %>% 
+  mutate(PWS=toupper(PWS)) %>% 
+  filter(PWS=="YES")
+locs<-location %>% select(LAKE_HISTORY_ID,LOCATION_HISTORY_ID,LOCATION_PWL_ID) %>% distinct()
+pws<-merge(lake,locs,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+
+#draft<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-draft %>% 
+  select(seg_id:parameter) %>% 
+  distinct() %>% 
+  rename(LOCATION_PWL_ID=seg_id) %>% 
+  mutate(value=1)
+draft<-merge(pws,draft,by=c('LOCATION_PWL_ID'),all.x=TRUE)
+#restrict to public water supply use
+draft<-draft %>% 
+  filter(use=="source_of_water_supply") %>% 
+  select(-LOCATION_HISTORY_ID) %>% distinct()
+
+
+
+#restrict to those that have confirmed assessments
+draft<-draft %>% 
+  filter(grepl("unassessed",use_assessment)) %>% 
+  distinct()
+
+#Remove NYC reservoirs
+draft<-draft %>% filter(!(LAKE_HISTORY_ID %in% c('1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086','1302MID0062','1302DIV0083','1302CRO0059',
+                                                 '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+                                                 '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A','1403PEP0358A',
+                                                 '1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A','1301JER1042',
+                                                 '1702HIL1052')))
+
+
+#tally results
+junk<-draft %>% 
+  select(LAKE_HISTORY_ID,use_assessment) %>% 
+  mutate(sampling="screening") %>% 
+  group_by(sampling) %>% 
+  summarize(n=n()) %>% 
+  ungroup()
+library(kableExtra)
+kable(junk)
+```
+
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+sites<-draft %>% select(LOCATION_PWL_ID,use_assessment)
+#Reading in new database
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
+setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
+setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+coordinates<-location %>% filter(LOCATION_TYPE=="CENTROID"|LOCATION_NAME=="CHAUTAUQUA S CSLAP SITE 33.1") %>% select(LOCATION_PWL_ID,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE) %>% distinct()
+sites<-merge(sites,coordinates,by=c('LOCATION_PWL_ID'),all.x = TRUE)
+
+library(ggmap)
+library(ggrepel)
+
+nybox<-make_bbox(sites,lon=LOCATION_X_COORDINATE,lat=LOCATION_Y_COORDINATE)
+
+print(ny.map1<-qmap(nybox,source="osm",maptype="terrain",color="bw")+
+  geom_point(data=sites,aes(x=LOCATION_X_COORDINATE,y=LOCATION_Y_COORDINATE,label=LOCATION_PWL_ID),size=4))
+
+
+
+```
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+doh<-read.csv("data.requests/PWS_IDs.csv")
+doh<-doh %>%
+  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+draft<-merge(draft,doh,by=c('LAKE_HISTORY_ID','LOCATION_PWL_ID'),all.x=TRUE)
+
+```
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+lmas<-draft
+#read in DWSP2 files
+#wss<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+wss<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+lmas<-merge(wss,lmas,by=c('PWS.ID'),all=TRUE)
+
+#too many individual facilities to be useful
+# rep<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/facility.report.csv")
+# lmas<-merge(rep,lmas,by=c('PWS.ID','PWS.Name','Primary.Source','PWS.Type','Owner.Type'),all=TRUE)
+
+#viol<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+viol<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+
+#colnames(viol)[(colnames(viol) %in% colnames(lmas))]
+lmas<-merge(lmas,viol,by=c("PWS.ID","PWS.Name","PWS.Type","Primary.Source","Counties.Served","Cities.Served","PopulationServed.Count","Number.of.Facilities"),all.x=TRUE)
+
+lmas<-lmas %>% 
+   filter(is.na(Primary.Source)|Primary.Source=="Surface water",
+          !is.na(LAKE_HISTORY_ID)) %>% 
+  #,          Facility.Activity=="Active"
+#          Availability.Description=="Permanent")
+  select(LAKE_HISTORY_ID,waterbody,PWS.ID,PWS.Name,PWS.Type,Primary.Source,Counties.Served,Cities.Served,PopulationServed.Count,Number.of.Facilities,
+         Owner.Type) %>% distinct() %>% 
+  arrange(desc(PopulationServed.Count))
+
+
+#write.csv(lmas,file="PWS.for.TMDL.and.sdwis.csv",row.names=FALSE)
+DT::datatable(lmas, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+```
+
+
+## Int. PWS Lakes
+
+Lakes with public water supply intakes that we are considering for intensive sampling. TO be clear, there are multiple intakes on many of these waterbodies.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+#merging lake id with the DOH ID
+
+rm(list=ls())
+#read in data
+#Script to read in new database
+library(tidyverse)
+# library(ggmap)
+# library(ggrepel)
+# library(rgdal)
+# library(sp)
+# library(spatialEco)
+# library(tidyverse)
+library(knitr)
+#Reading in new database
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
+setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+lake<-read.csv("new_database/L_LAKE.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
+setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+
+
+
+lake<-lake %>% select(LAKE_HISTORY_ID,PWS) %>% distinct() %>% 
+  mutate(PWS=toupper(PWS)) %>% 
+  filter(PWS=="YES")
+locs<-location %>% select(LAKE_HISTORY_ID,LOCATION_HISTORY_ID,LOCATION_PWL_ID) %>% distinct()
+pws<-merge(lake,locs,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+
+#draft<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+draft<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/2022_stayCALM_ponded_internal-draft-assessments.csv")
+
+draft<-draft %>% 
+  select(seg_id:parameter) %>% 
+  distinct() %>% 
+  rename(LOCATION_PWL_ID=seg_id) %>% 
+  mutate(value=1)
+draft<-merge(pws,draft,by=c('LOCATION_PWL_ID'),all.x=TRUE)
+#restrict to public water supply use
+draft<-draft %>% 
+  filter(use=="source_of_water_supply") %>% 
+  select(-LOCATION_HISTORY_ID) %>% distinct()
+
+
+
+#restrict to those that have confirmed assessments
+draft<-draft %>% 
+  filter(grepl("unconfirmed",use_assessment)) %>% 
+  distinct()
+
+#Remove NYC reservoirs
+draft<-draft %>% filter(!(LAKE_HISTORY_ID %in% c('1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086','1302MID0062','1302DIV0083','1302CRO0059',
+                                                 '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+                                                 '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A','1403PEP0358A',
+                                                 '1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A','1301JER1042',
+                                                 '1702HIL1052')))
+
+
+#tally results
+junk<-draft %>% 
+  select(LAKE_HISTORY_ID,use_assessment) %>% 
+  mutate(sampling="intensive") %>% 
+  group_by(sampling) %>% 
+  summarize(n=n()) %>% 
+  ungroup()
+library(kableExtra)
+kable(junk)
+```
+
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+sites<-draft %>% select(LOCATION_PWL_ID,use_assessment)
+#Reading in new database
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/Current")
+setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+location<-read.csv("new_database/L_LOCATION.csv",na.strings=c("","NA"), stringsAsFactors=FALSE)
+#setwd("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization")
+setwd("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization")
+coordinates<-location %>% filter(LOCATION_TYPE=="CENTROID"|LOCATION_NAME=="CHAUTAUQUA S CSLAP SITE 33.1") %>% select(LOCATION_PWL_ID,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE) %>% distinct()
+sites<-merge(sites,coordinates,by=c('LOCATION_PWL_ID'),all.x = TRUE)
+
+library(ggmap)
+library(ggrepel)
+
+nybox<-make_bbox(sites,lon=LOCATION_X_COORDINATE,lat=LOCATION_Y_COORDINATE)
+
+print(ny.map1<-qmap(nybox,source="osm",maptype="terrain",color="bw")+
+  geom_point(data=sites,aes(x=LOCATION_X_COORDINATE,y=LOCATION_Y_COORDINATE,label=LOCATION_PWL_ID),size=4))
+
+
+
+```
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+doh<-read.csv("data.requests/PWS_IDs.csv")
+doh<-doh %>%
+  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+draft<-merge(draft,doh,by=c('LAKE_HISTORY_ID','LOCATION_PWL_ID'),all.x=TRUE)
+
+
+```
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+lmas<-draft
+#read in DWSP2 files
+#wss<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+wss<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/water.systems.summary.csv")
+
+lmas<-merge(wss,lmas,by=c('PWS.ID'),all=TRUE)
+
+#too many individual facilities to be useful
+# rep<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/facility.report.csv")
+# lmas<-merge(rep,lmas,by=c('PWS.ID','PWS.Name','Primary.Source','PWS.Type','Owner.Type'),all=TRUE)
+
+#viol<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+viol<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/Water System Summary viol.csv")
+
+#colnames(viol)[(colnames(viol) %in% colnames(lmas))]
+lmas<-merge(lmas,viol,by=c("PWS.ID","PWS.Name","PWS.Type","Primary.Source","Counties.Served","Cities.Served","PopulationServed.Count","Number.of.Facilities"),all.x=TRUE)
+
+lmas<-lmas %>% 
+   filter(is.na(Primary.Source)|Primary.Source=="Surface water",
+          !is.na(LAKE_HISTORY_ID)) %>% 
+  #,          Facility.Activity=="Active"
+#          Availability.Description=="Permanent")
+  select(LAKE_HISTORY_ID,waterbody,PWS.ID,PWS.Name,PWS.Type,Primary.Source,Counties.Served,Cities.Served,PopulationServed.Count,Number.of.Facilities,
+         Owner.Type) %>% distinct() %>% 
+  arrange(desc(PopulationServed.Count))
+
+
+#write.csv(lmas,file="PWS.for.TMDL.and.sdwis.csv",row.names=FALSE)
+DT::datatable(lmas, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+```
+
+
+## Sc. PWS Streams
+
+Flowing waters with public water supply intakes that we are intending to screen 2022-23. TO be clear, there are multiple intakes on many of these waterbodies.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+rm(list=ls())
+sites<-read.csv("SMAS/Unassessed_PWS_Intakes_W_PWL_ID_From_Final_List_created_2022_02_15.csv")
+sites<-sites %>% 
+  rename(PWS.ID=WATER_SYSTEMID,
+         PWS.Name=WATER_SYSTEM_NAME,
+         Primary.Source=SOURCE_NAME,
+         PWS.Type=FACILITY_TYPE,
+         PopulationServed.Count=PWS_INTAKE_LAYER_POPULATION_SERVED) %>% 
+  mutate(sampling="screening") %>% 
+  distinct(sampling,PWS.ID,PWS.Name,PWS.Type,PopulationServed.Count,WATER_SYSTEM_TYPE,PWL_ID,WIN,NAME,DESCRIPT,PARTITEM,CLASSIFICA,Lat,Long) %>% distinct()
+  
+
+#tally results
+junk<-sites %>% 
+  select(PWL_ID,NAME,sampling) %>% distinct() %>% 
+  group_by(sampling) %>% 
+  summarize(n=n()) %>% 
+  ungroup()
+library(kableExtra)
+kable(junk)
+
+nybox<-make_bbox(sites,lon=Long,lat=Lat)
+
+print(ny.map1<-qmap(nybox,source="osm",maptype="terrain",color="bw")+
+  geom_point(data=sites,aes(x=Long,y=Lat,label=NAME),size=4))
+
+
+
+DT::datatable(sites, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+```
+
+## Int. PWS Streams
+
+Flowing waters with public water supply intakes that we are considering for intensive sampling. TO be clear, there are multiple intakes on many of these waterbodies.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+rm(list=ls())
+sites<-read.csv("SMAS/Unconfirmed_PWS_Intakes_W_PWL_ID_From_Final_List_created_2022_02_15.csv")
+sites<-sites %>% 
+  rename(PWS.ID=WATER_SYSTEMID,
+         PWS.Name=WATER_SYSTEM_NAME,
+         Primary.Source=SOURCE_NAME,
+         PWS.Type=FACILITY_TYPE,
+         PopulationServed.Count=PWS_INTAKE_LAYER_POPULATION_SERVED) %>% 
+  mutate(sampling="intensive") %>% 
+  distinct(sampling,PWS.ID,PWS.Name,PWS.Type,PopulationServed.Count,WATER_SYSTEM_TYPE,PWL_ID,WIN,NAME,DESCRIPT,Lat,Long) %>% distinct()
+  
+
+#tally results
+junk<-sites %>% 
+  select(PWL_ID,NAME,sampling) %>% distinct() %>% 
+  group_by(sampling) %>% 
+  summarize(n=n()) %>% 
+  ungroup()
+library(kableExtra)
+kable(junk)
+
+nybox<-make_bbox(sites,lon=Long,lat=Lat)
+
+print(ny.map1<-qmap(nybox,source="osm",maptype="terrain",color="bw")+
+  geom_point(data=sites,aes(x=Long,y=Lat,label=NAME),size=4))
+
+
+
+DT::datatable(sites, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+```

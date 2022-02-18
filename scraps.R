@@ -129,3 +129,5 @@ pws<-pws %>% filter(is.na(PWS.ID))
 
 rmarkdown::render("PWS_unconfirmed_priorities.Rmd")
 rmarkdown::render("PWS_screening_priorities.Rmd")
+rmarkdown::render("PWS_priorities.Rmd")
+rmarkdown::render("PWS_priorities_for_DOH.Rmd")
