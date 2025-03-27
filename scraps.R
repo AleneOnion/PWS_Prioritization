@@ -181,6 +181,7 @@ rmarkdown::render("2023.01.12.PWS.wqs.attainment.Rmd")
 
 junk<-att %>% filter(LAKE_HISTORY_ID %in% c('0905STA0281','1301ALC0185','1403LIL0311','1303WAL0257','1302MAH0053','0601WIL0297','0602UWB0108'))
 
+<<<<<<< HEAD
 newdata %>% filter(MAJOR_BASIN_ID=="03")
 
 '1104STE0135'=16UHB033
@@ -220,3 +221,7 @@ ponds <- transform(ponds, url = sapply(LAKE_POND_NUMBER,get_first_google_link))
 library(rvest)
 
 content <- read_html("data.requests/NY-CRR/1.View Document - New York Codes, Rules and Regulations.html")
+=======
+
+list.files("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Documents/Paperwork/seasonal.position/applicants/2024")
+>>>>>>> ff2e2302983cba83fb7fd51eb6f5c2991622645f

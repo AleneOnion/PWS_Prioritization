@@ -1,0 +1,192 @@
+---
+title: "PWS_water_quality"
+author: "Alene Onion"
+date: "2025-02-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Read in Data
+
+using the new obt database
+
+```{r load database}
+# #Load zach's database
+# library(arrow)
+# library(tidyverse)
+# library(ggplot2)
+# 
+# obt_result_dir <- file.path(
+#   "L:",
+#   "DOW",
+#   "BWAM Share",
+#   "data",
+#   "parquet",
+#   "analytical_table_store",
+#   "obt_result.parquet"
+# )
+# obt <- open_dataset(obt_result_dir) |>
+# collect()
+
+
+
+# #add 2024 lci data
+event<-readRDS("L:/DOW/BWAM Share/data/data_warehouse_staging/2024_V3/raw_data/lake/events.rds")
+#merge results with existing site info
+newsites<-readRDS("L:/DOW/BWAM Share/data/data_warehouse_staging/2024_V3/raw_data/lake/missing_sites_table.rds")
+newsites<-newsites %>% mutate(WATERBODY_CODE=sub("_.*", "", SITE_CODE))
+newwaterbodies<-readRDS("L:/DOW/BWAM Share/data/data_warehouse_staging/2024_V3/raw_data/lake/missing_waterbody_table.rds")
+new<-merge(newsites,newwaterbodies,by=c('WATERBODY_CODE'),all.x=TRUE)
+otherinfo<-obt %>% select(WATERBODY_CODE,SITE_CODE,COUNTY,MUNICIPALITY,DEC_REGION,BASIN,SUBBASIN,WIPWL,WATERSHED_ID_NUMBER,
+WATERBODY_CLASS,HUC12,ECOREGION_LEVEL_4,NUTRIENT_ECOREGION,SITE_DESCRIPTION,LOCATION_TYPE,LATITUDE,
+LONGITUDE,HORIZONTAL_METHOD,HORIZONTAL_DATUM,LOCATION,WATERBODY_NAME,BEACH_PRESENT,FISHERIES_INDEX_NUMBER,
+PUBLIC_WATER_SUPPLY,USGS_POND_NUMBER,WATERBODY_TYPE,WATERBODY_ALTERNATE_NAME) %>% distinct()
+otherinfo<-merge(otherinfo,new,all=TRUE)
+otherinfo<-otherinfo %>% distinct()
+event<-merge(event,otherinfo,by=c('SITE_CODE'),all.x=TRUE)
+lci<-readRDS("L:/DOW/BWAM Share/data/data_warehouse_staging/2024_V3/raw_data/lake/als_data_results.rds")
+event<-merge(event,lci,by=c('EVENT_ID'),all.x=TRUE)
+obt24<-merge(obt,event,all=TRUE)
+
+#old database:
+#sources data from database
+# setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+# source("new_database/Reading.LMAS.Data.R")
+# setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Report Automation/Lake reports/Current_Script/Lake_Reports")
+
+#convert PWS - these should be marked as PWS once they are added to the new database
+obt24<-obt24 %>% 
+  mutate(PUBLIC_WATER_SUPPLY = ifelse(WATERBODY_CODE %in% c('0105UWB0166M','1101NEW0099C','1201FOR0681A',
+                                                            '1201SPRXXX1','1301RES0153','1301CAM0163A','1301UWB0215B',
+                                                            '1301UWB0413','1301UWB0438P','1301UWB0438D','1306UWB0683',
+                                                            '1306UWB6000','1306UWB6070','1307KIN0837A','1003UWB0026'),
+                                      "TRUE",PUBLIC_WATER_SUPPLY))
+
+rm(list=setdiff(ls(), c("newdata","obt","obt24")))
+
+#read in statewide distribution data sets
+pdf<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Lake reports/Current_Script/Lake_Reports/Trends.and.Distributions/NY.pdf.csv")
+cat<-read.csv("C:/Users/amonion/OneDrive - New York State Office of Information Technology Services/Rscripts/PWS_Prioritization/probabilistic_data/categorical.csv")
+
+```
+
+
+## Identifying shared parameter list
+
+```{r chl a data prep, echo=FALSE}
+params<-obt24 %>% 
+  # mutate(year=as.numeric(substr(EVENT_DATETIME,1,4))) %>% 
+  filter(
+    # year>2013,
+         SAMPLE_LOCATION %in% c('bottom_sample','open_water','depth_profile'),
+         PUBLIC_WATER_SUPPLY=="TRUE") %>% 
+  select(WATERBODY_CODE,PARAMETER_NAME,FRACTION,SAMPLE_LOCATION) %>% distinct() %>% 
+  group_by(PARAMETER_NAME,FRACTION,SAMPLE_LOCATION) %>% 
+  summarise(n=n()) %>% 
+  ungroup() %>% 
+  spread(SAMPLE_LOCATION,n) %>% 
+  arrange(PARAMETER_NAME) %>% distinct()
+
+```
+
+
+## Chlorophyll a distribution
+
+
+
+```{r chl a data prep, echo=FALSE}
+chla<- obt24 |> filter(PUBLIC_WATER_SUPPLY==TRUE) |> 
+  filter(PARAMETER_NAME %in% c("chlorophyll-a",'chlorophyll_a','chlorophyll a'),UNIT %in% c('ug/L','ug/l'),
+         as.numeric(substr(EVENT_DATETIME,1,4))>2010,
+         SAMPLE_LOCATION=="open_water") |> 
+  select(WATERBODY_NAME,WATERBODY_CODE,WIPWL,EVENT_DATETIME,RESULT_VALUE) |> distinct() |> 
+  group_by(WATERBODY_NAME,WATERBODY_CODE,WIPWL) |> 
+  summarise(RESULT_VALUE=median(RESULT_VALUE,na.rm=TRUE)) |> 
+  ungroup() |> 
+  # filter(RESULT_VALUE>8) |> 
+  arrange(desc(RESULT_VALUE)) |> 
+  mutate(
+    trophic=ifelse(RESULT_VALUE>8,"eutrophic",ifelse(RESULT_VALUE<2,"oligotrophic","mesotrophic")),
+    trophic=factor(trophic,levels=c("eutrophic","mesotrophic","oligotrophic"))) 
+```
+
+```{r chl a pdf plots, echo=FALSE}
+fill<-c("eutrophic"="#c41910","mesotrophic"="#cfcc1b","oligotrophic"="#348a0a")
+p1<-(ggplot(data=chla,aes(x="lakes",y=RESULT_VALUE)) +
+       geom_violin()+
+       geom_jitter(aes(fill=trophic),shape=21,size=3)+
+       scale_fill_manual(values=fill)+
+       ylab("Chlorophyll a (μg/L)")+
+       theme(
+         axis.title.x=element_blank(),
+         axis.text.x=element_blank(),
+         axis.ticks.x=element_blank(),
+         legend.position = c(.2,.85)))
+#statewide distribution
+chla_pdf<-pdf %>% filter(parameter=="CHLOROPHYLL_ug_L")
+p3<-(ggplot(chla_pdf,aes(x=results,y=probability))+
+       geom_line()+
+       geom_area(colour="black", fill="#808080", alpha=.2)+
+       scale_x_continuous(limits = c(0,max(chla$RESULT_VALUE)))+
+       ylab("statewide %")+
+       theme(
+         axis.text.x=element_blank(), #remove x axis labels
+         axis.ticks.x=element_blank(), #remove x axis ticks
+         # axis.title.x=element_blank(),
+         axis.title.x=element_text(size=8, vjust = 8),
+         axis.title.y=element_blank(),
+         axis.text.y=element_blank(),  #remove y axis labels
+         axis.ticks.y=element_blank(),
+         panel.border = element_blank(),
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(),
+         panel.background = element_blank(),
+         axis.line = element_blank(),
+         plot.margin=unit(c(-.55,0,-.15,0),"cm"))+
+       coord_flip())
+library(gridExtra)
+#arranges all plots together 
+grid.arrange(p1,p3, ncol=2,widths = c(.75,.25),
+             top = grid::textGrob("Median Chl a concentrations in NY Public Water Supplies", x = 0, hjust = -.125))
+```
+
+
+```{r chl a cat plots, echo=FALSE}
+#count lakes in each trophic category
+chla_cnt<-chla %>% 
+  group_by(trophic) %>% 
+  summarise(`Percent of Total`=n()) %>% 
+  ungroup() %>% 
+  mutate(`Percent of Total`=(`Percent of Total`/(sum(`Percent of Total`)))*100) %>% 
+  rename(Category=trophic) %>% 
+  mutate(Indicator="PWS")
+#statewide distribution
+chla_cat<-cat %>% 
+  filter(Indicator=="chla_trophic") %>% 
+  mutate(Indicator="Statewide") |> 
+  rename(`Percent of Total`=Estimate.P) %>% 
+  select(Indicator,Category,`Percent of Total`,LCB95Pct.P,UCB95Pct.P) %>% distinct()
+chla_cat<-merge(chla_cat,chla_cnt,by=c('Indicator','Category','Percent of Total'),all=TRUE)
+chla_cat<-chla_cat %>% 
+  replace(is.na(.), 0)
+
+print(ggplot(chla_cnt,aes(x="Public Water Supplies",y=pct_lakes,fill=trophic))+
+        geom_bar(stat="identity", width=0.2, position = "dodge")+
+        ylab("Percent of Total")+
+        theme(axis.title.x=element_blank()))
+
+print(ggplot(chla_cat,aes(x=`Percent of Total`,y=Category,fill=Indicator)) +
+  geom_bar(stat="identity", position = "dodge")+
+  scale_fill_manual(values = c("#606060", "#b8b8b8","#b8b8b8"))+
+  # scale_y_discrete(position = "right")+
+  geom_errorbar(aes(xmin=LCB95Pct.P,xmax=UCB95Pct.P,fill=Indicator),width=.9, position = "dodge")+
+  theme(axis.title.y=element_blank())+
+  theme(legend.title=element_blank()))
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

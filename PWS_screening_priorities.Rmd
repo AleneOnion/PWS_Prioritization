@@ -160,10 +160,12 @@ merge unassessed PWS with PWL IDs with SDWIS ids
 Then Rank PWS by population served
 
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
-doh<-read.csv("data.requests/PWS_IDs.csv")
+doh<-read.csv("C:/Users/leneo/Dropbox/Alene/Rscripts/PWS_Prioritization/PWSrelated.csv")
 doh<-doh %>%
-  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
-draft<-merge(draft,doh,by=c('LAKE_HISTORY_ID','LOCATION_PWL_ID'),all.x=TRUE)
+  select(LakeID,Water_SystemID) %>% distinct() %>% 
+  rename(LAKE_HISTORY_ID=LakeID,
+         PWS.ID=Water_SystemID) 
+draft<-merge(draft,doh,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
 
 ```
 
