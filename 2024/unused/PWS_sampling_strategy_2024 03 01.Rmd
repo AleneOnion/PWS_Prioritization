@@ -1,0 +1,209 @@
+---
+title: "PWS_sampling_strategy_2024"
+author: "Giancarlo Coppola"
+date: '`r paste("DRAFT Report Generated on:", format(Sys.Date(),format="%B %d, %Y"))`'
+output: html_document
+---
+
+#  {.tabset}
+
+```{r, include=FALSE, results='asis', message=FALSE, warning=FALSE}
+options(scipen=999) # prevents scientific notation of site code
+
+# filter out HAB reports --------------------------
+pws_total<-newdata %>% 
+  filter(PWS=="YES") %>% 
+  mutate(year = substr(SAMPLE_DATE,1,4))
+
+non_hab<-pws_total %>% filter(is.na(HS_HAB_STATUS),
+                              SAMPLE_TYPE!='HAB')
+
+# separate out sampled vs unsampled PWS
+pws_sampled<-non_hab %>% filter(!is.na(SAMPLE_DATE))
+pws_unsampled<-pws_total %>% filter(!LAKE_HISTORY_ID %in% pws_sampled$LAKE_HISTORY_ID)
+
+
+# temp<-newdata %>% 
+#   filter(PWS=="YES") %>% 
+#   select(LAKE_HISTORY_ID,LOCATION_PWL_ID) %>% distinct() 
+  
+#newdata$year<-substr(newdata$SAMPLE_DATE,1,4)
+
+# assessments havent been completed yet for 2023 so Im doing this manually
+ponded_2023<-pws_sampled %>% 
+  mutate(new_2023 = case_when(
+    LAKE_HISTORY_ID %in% pws_sampled[pws_sampled$year !='2023',]$LAKE_HISTORY_ID ~ 'NO',
+    TRUE ~ 'YES'
+  )) %>% 
+  filter(year=='2023', SAMPLE_TYPE == 'WATER COLUMN', DATA_PROVIDER == 'LCI') %>% 
+  select(LOCATION_PWL_ID, LAKE_HISTORY_ID) %>% distinct()
+
+# prepare assessment data
+att_raw<-read.csv("C:/Users/gxcoppol/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization/2022.Data/2022_lmas_evaluations.csv")%>%
+  rename(LOCATION_PWL_ID=seg_id) %>% distinct()
+
+att<-att_raw %>% 
+  filter(LOCATION_PWL_ID %in% pws_sampled$LOCATION_PWL_ID) %>% 
+  left_join(pws_sampled %>% select(LOCATION_PWL_ID, LAKE_HISTORY_ID) %>% distinct(), by = 'LOCATION_PWL_ID')
+
+
+# att_primer<-merge(temp,att_raw,by=c('LOCATION_PWL_ID'),all.x=TRUE) %>% 
+#   filter(!(LAKE_HISTORY_ID %in%
+#                         c('1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086',
+#                           '1302MID0062','1302DIV0083','1302CRO0059',
+#                           '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+#                           '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A',
+#                           '1403PEP0358A','1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A',
+#                           '1301JER1042','1702HIL1052',
+#                           # lakes removed for reasons described in the unassessed without data section
+#                           '1501STA1011','1301TIO0152','1301SUM0193',
+#                           '1311THO0274','0905CRA0309','1307KIN0837A','1307KIN0837','1307KIN0838A',
+#                           '1301BRO0155',
+#                           '0402RUS0033','1702BAR1108','1000CHA0001','0300ONT0000',
+#                           '1005DOL0424','1301LUS0204','0302COB0118','1202TAN0655A','1202TAN0655B',
+#                           '1303UPP0223',
+#                           # lakes removed for reasons described in the unassessed with data section
+#                           '0302SOD0096','0601OTS0404','0601OTS0404','0601OTS0404','0705SEN0369',
+#                           '0705SEN0369','0705SEN0369','1201MAR0570','1301POP0191','1308TAG0869',
+#                           '0705SEN0369','0705SEN0369','1301QUE0184A','1301STI0187A','1301STI0187A')))
+
+
+# att<-att_primer %>% 
+#   filter(!LAKE_HISTORY_ID %in% ponded_2023[ponded_2023$new_2023!='YES',]) %>%
+#   group_by(LAKE_HISTORY_ID) %>% 
+#   summarise(n_samples_collected = max(n_samples_collected)) %>% 
+#   bind_rows(ponded_2023[ponded_2023$new_2023=='YES',])
+
+
+
+# att_never_sampled<-att %>% filter(is.na(n_samples_collected))
+
+# no PWL waterbodies removed for various reasons described in 2023 markdown
+no_pwl_remove<-c('0202CHA0122','0705CAY0296','0302UWB0008','0601UWB0395','1003RAY0091',
+                 '0501ELM0019','1301UWB0413', '1306UWB0683','1101DOR0098',
+                 '1303UPP0223','0503HOR0035','1101UWB1081','1201UWB0662','1306GLE0668','1306MIL0515',
+                 '0100ERI5000', # lake Erie - have to remove these and put justification in markdown
+                 '1202TAN0655D','1202UWB0589A','1501UWB1007A', # have data - have to remove these and put justification in markdown
+                 '1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086', # everything below has been copy pasted from above
+                   '1302MID0062','1302DIV0083','1302CRO0059',
+                   '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+                   '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A',
+                   '1403PEP0358A','1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A',
+                   '1301JER1042','1702HIL1052',
+                   # lakes removed for reasons described in the unassessed without data section
+                   '1501STA1011','1301TIO0152','1301SUM0193',
+                   '1311THO0274','0905CRA0309','1307KIN0837A','1307KIN0837','1307KIN0838A', '1301BRO0155',
+                   '0402RUS0033','1702BAR1108','1000CHA0001','0300ONT0000',
+                   '1005DOL0424','1301LUS0204','0302COB0118','1202TAN0655A','1202TAN0655B',
+                   '1303UPP0223',
+                   # lakes removed for reasons described in the unassessed with data section
+                   '0302SOD0096','0601OTS0404','0601OTS0404','0601OTS0404','0705SEN0369','0705SEN0369','0705SEN0369','1201MAR0570','1301POP0191','1308TAG0869',
+                   '0705SEN0369','0705SEN0369','1301QUE0184A','1301STI0187A','1301STI0187A')
+
+
+doh<-read.csv("C:/Users/gxcoppol/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization/data.requests/PWS_IDs.csv") %>%
+  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+
+# filter out lakes that were removed because of specific reasons 
+lo<-location %>% filter(LAKE_HISTORY_ID %in% bwrm_check$LAKE_HISTORY_ID,
+                        LOCATION_HISTORY_ID !='1301UWB0438P_BEACH')
+
+bwrm_check<-att_never_sampled %>% filter(!LAKE_HISTORY_ID %in% no_pwl_remove) %>% 
+  left_join(lake, by = 'LAKE_HISTORY_ID') %>% 
+  left_join(doh, by = 'LAKE_HISTORY_ID') #%>% 
+  #left_join(lo, by = 'LAKE_HISTORY_ID')
+
+write.csv(bwrm_check, 'C:/Users/gxcoppol/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization/bwrm_check.csv', row.names = F, na = '')
+
+nopwl<-att %>% filter(is.na(LOCATION_PWL_ID))
+att<-att %>% filter(!is.na(LOCATION_PWL_ID))
+
+
+
+```
+
+
+## Assessed PWS
+
+PWS that have sufficient data for an assessment (n_years_sampled >=2; n_samples>=6; use== source_of_water_supply)
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes that can be assessed
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table1_expanded<-att %>% 
+  filter(n_years_sampled >=2| n_samples_collected>=6) %>% 
+  filter(use== 'source_of_water_supply',
+         within_period=='TRUE',
+         !LAKE_HISTORY_ID %in% no_pwl_remove) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% distinct()
+
+table1b_PWS_info<-merge(table1_expanded, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x = T)
+
+DT::datatable(table1_expanded, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table1b_PWS_info, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+## Unassessed PWS with Data
+
+PWS that have data but not enough for an assessment.
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes with data
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table2<-pws_sampled %>% 
+  filter(!LAKE_HISTORY_ID %in% c(table1_expanded$LAKE_HISTORY_ID,
+                                no_pwl_remove)) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% distinct()
+
+table2b<-table2 %>% left_join(doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'))
+
+DT::datatable(table2, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table2b, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+
+
+## Unassessed PWS without Data
+
+PWS that were never sampled.
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes with data
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table3<-pws_unsampled %>% 
+  filter(!LAKE_HISTORY_ID %in% c(no_pwl_remove)) %>% 
+  bind_rows(pws_sampled[pws_sampled$LAKE_HISTORY_ID %in% c('0705UWB0340A','1301FER0028C'),]) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% 
+  distinct()
+
+table3b<-table3 %>% left_join(doh, by = c('LAKE_HISTORY_ID'))
+fucked<-table3b %>% filter(!LAKE_HISTORY_ID %in% bwrm$LAKE_HISTORY_ID)
+fucked2<-bwrm %>% filter(!LAKE_HISTORY_ID %in% table3$LAKE_HISTORY_ID)
+
+fdat<-newdata %>% filter(LAKE_HISTORY_ID %in% fucked$LAKE_HISTORY_ID)
+
+
+DT::datatable(table1_expanded, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table1b_PWS_info, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```

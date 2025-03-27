@@ -1,0 +1,242 @@
+---
+title: "PWS_sampling_approach_2024"
+author: "Giancarlo Coppola"
+date: '`r paste("DRAFT Report Generated on:", format(Sys.Date(),format="%B %d, %Y"))`'
+output: html_document
+---
+
+
+**Summary of PWS Sampling Approach for 2024**
+
+1. **We will screen all PWS regardless of WI/PWL status.** There are 19 remaining ponded PWS that are not on the WI/PWL. Additionally, there are 10 emergency water supplies (3 on the WI/PWL and 7 that are not). We will plan to sample all 29 waterbodies this summer. 
+
+2. **Point Source Approach:** Alene Identified PWS with SPDES point sources discharging directly to them AND excursions possibly partially caused by the point sources. On 2/10, Alene reached out to Monica Moss to ask on whether excursions observed in these waterbodies may be connected to the PWS. Monica pointed out that 4 of the 6 SPDES are for PWS discharge of excess drinking water and therefore unlikely a source of nutrient pollution. Therefore, we have 2 lakes remaining with SPDES that might be contributing to the nutrient load and in waterbody impairments caused by nutrient loading. 
+
+3. **Nonpoint source Approach:** the best way to address water quality impairments in a non point source influenced waterbody is to engage the community. One mechanism to do so is participation in CSLAP (which I just learned is now possible). Kristen and Jess will identify PWS that would be interested in CSLAP sampling in 2025.
+
+**2024 Ponded PWS Inventory:** We requested DOH to confirm that MAS's list of ponded PWS accounts for all in the state, even those without a LAKE_HISTORY_ID or a PWL ID. 
+
+
+
+Below are major groupings of PWS. We plan to screen all waterbodies in tabs describing those without data. 
+
+#   {.tabset}
+
+```{r, include=FALSE, results='asis', message=FALSE, warning=FALSE}
+options(scipen=999) # prevents scientific notation of site code
+
+library(tidyverse)
+
+# filter out HAB reports 
+pws_total<-newdata %>% 
+  filter(PWS=="YES") %>% 
+  mutate(year = substr(SAMPLE_DATE,1,4))
+
+non_hab<-pws_total %>% filter(is.na(HS_HAB_STATUS),
+                              SAMPLE_TYPE!='HAB')
+
+# separate out sampled vs unsampled PWS
+pws_sampled<-non_hab %>% filter(!is.na(SAMPLE_DATE))
+pws_unsampled<-pws_total %>% filter(!LAKE_HISTORY_ID %in% pws_sampled$LAKE_HISTORY_ID)
+
+
+
+# assessments havent been completed yet for 2023 so Im doing this manually
+ponded_2023<-pws_sampled %>% 
+  mutate(new_2023 = case_when(
+    LAKE_HISTORY_ID %in% pws_sampled[pws_sampled$year !='2023',]$LAKE_HISTORY_ID ~ 'NO',
+    TRUE ~ 'YES'
+  )) %>% 
+  filter(year=='2023', SAMPLE_TYPE == 'WATER COLUMN', DATA_PROVIDER == 'LCI') %>% 
+  select(LOCATION_PWL_ID, LAKE_HISTORY_ID) %>% distinct()
+
+# prepare assessment data
+att_raw<-read.csv("C:/Users/crnovell/OneDrive - New York State Office of Information Technology Services/PWS/PWS_Prioritization/2022.Data/2022_lmas_evaluations.csv")%>%
+  rename(LOCATION_PWL_ID=seg_id) %>% distinct()
+
+att<-att_raw %>% 
+  filter(LOCATION_PWL_ID %in% pws_sampled$LOCATION_PWL_ID) %>% 
+  left_join(pws_sampled %>% select(LOCATION_PWL_ID, LAKE_HISTORY_ID) %>% distinct(), by = 'LOCATION_PWL_ID')
+
+
+
+excluded_pws_primer<-list(
+  transient_non_community=c('0302SOD0096','0601OTS0404','0601OTS0404','0601OTS0404','0705SEN0369','0705SEN0369','0705SEN0369','1201MAR0570','1301POP0191','1308TAG0869',
+                           '1501STA1011','1301TIO0152','1301SUM0193',
+                           '1311THO0274','0905CRA0309','0302RESXXX1','1309UWB6509'),
+state_owned=c('1301QUE0184A','1005DOL0424'),
+federally_owned=c('1301STI0187A','1301LUS0204'),
+not_pws=c('0402RUS0033','0901STL5150'),
+inaccessible=c('1702BAR1108'),
+great_lakes_champlain=c('1000CHA0001','0300ONT0000','0100ERI5000'),
+concrete_lined=c('0302COB0118','1201UWB0662','0302MENXXX1','0302UWB5258'),
+not_active=c('1202TAN0655A','1202TAN0655B','1307KIN0838A','1101UWB1081','1203HER0798F'),
+no_intake=c('1303UPP0223','1301UWB5426'),
+has_data=c('0202CHA0122','0705CAY0296','1306GLE0668','1306MIL0515','0503HOR0035','1202TAN0655D','1202UWB0589A','1501UWB1007A'),
+ambiguous_p_numbers=c('0302UWB0008','0601UWB0395','1003RAY0091'),
+seasonal=c('1101DOR0098'),
+flowing_water=c('1104UWB0134D','1307KIN0837'),
+empties_into_adjacent = c('1404TRA5563'),
+nyc_PWS=c('1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086',
+             '1302MID0062','1302DIV0083','1302CRO0059',
+             '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+             '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A',
+             '1403PEP0358A','1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A',
+             '1301JER1042','1702HIL1052'))
+
+excluded_pws<-do.call(rbind, lapply(excluded_pws_primer, data.frame))
+excluded_pws<-excluded_pws %>% rename(LAKE_HISTORY_ID = X..i..)
+excluded_pws$exclusion_criteria<-sub('[.].*','', rownames(excluded_pws))
+row.names(excluded_pws)<-1:length(excluded_pws$LAKE_HISTORY_ID)
+excluded_pws<-excluded_pws %>% distinct()
+
+emergency_supply<-c('1307KIN0837A','1307KIN0837', '1301BRO0155','0501ELM0019','1301UWB0413', '1306UWB0683','1201UWB5293','1404TRA5563','1101NEW0099C','1404BLA0462A')
+
+
+doh<-read.csv("C:/Users/crnovell/New York State Office of Information Technology Services/PWS/PWS_Prioritization/data.requests/PWS_IDs.csv") %>%
+  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+
+```
+
+
+## Assessed
+
+PWS that have sufficient data within the last 10 years for an assessment (n_years_sampled >=2; n_samples>=6; use== source_of_water_supply)
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes that can be assessed
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table1_expanded<-att %>% 
+  filter(n_years_sampled >=2| n_samples_collected>=6) %>% 
+  filter(use== 'source_of_water_supply',
+         within_period=='TRUE',
+         !LAKE_HISTORY_ID %in% excluded_pws$LAKE_HISTORY_ID) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% distinct()
+
+table1b_PWS_info<-merge(table1_expanded, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x = T)
+
+DT::datatable(table1_expanded, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table1b_PWS_info, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+## Unassessed, with Data
+
+PWS that have data but not enough for an assessment.
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes with data
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table2<-pws_sampled %>% 
+  filter(!LAKE_HISTORY_ID %in% c(table1_expanded$LAKE_HISTORY_ID,
+                                excluded_pws$LAKE_HISTORY_ID)) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% distinct()
+
+table2b<-table2 %>% left_join(doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'))
+
+DT::datatable(table2, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table2b, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+
+
+## Unassessed, No Data, with PWL ID
+
+PWS that were never sampled but do have PWL ID's. Our goal in 2023 was to screen all PWS that fall in this category, but these three were overlooked because their segments were not included in 2023 stayCALM output for an unknown reason.
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes without data
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+has_plan<-c('1301UWB0438P',
+'1301CAM0163A',
+'0705UWB0340A',
+'1301UWB5426',
+'1306UWB6070',
+'1003PAT0027')
+
+table3<-pws_unsampled %>% 
+  filter(!LAKE_HISTORY_ID %in% c(excluded_pws$LAKE_HISTORY_ID)) %>% 
+  bind_rows(pws_sampled[pws_sampled$LAKE_HISTORY_ID %in% c('0705UWB0340A','1301FER0028C'),]) %>% 
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>% 
+  distinct() %>% 
+  mutate(DWSP2_plan = if_else(LAKE_HISTORY_ID %in% has_plan,
+                              'Y',NA),
+         emergency_supply = if_else(LAKE_HISTORY_ID %in% emergency_supply,
+                                    'Y',
+                                    NA)) %>% 
+  arrange(LOCATION_PWL_ID, DWSP2_plan,emergency_supply) 
+
+table3b<-table3 %>% left_join(doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'))
+
+
+DT::datatable(table3 %>% filter(!is.na(LOCATION_PWL_ID)), extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table3b %>% filter(!is.na(LOCATION_PWL_ID)), extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+## Unassessed, No Data, No PWL ID
+
+PWS that were never sampled and are not on the WI/PWL. These waterbodies cannot be assessed because not only do they not have a PWL ID, they are also not included in Chapter X of the regs.
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes without data
+
+2. Data from table 1 + SDWIS id 
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+DT::datatable(table3 %>% filter(is.na(LOCATION_PWL_ID)), extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table3b %>% filter(is.na(LOCATION_PWL_ID)), extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+```
+
+## Excluded PWS
+
+PWS were excluded from sampling if they met any of the following criteria:
+
+1. transient_non_community
+2. state_owned
+3. federally_owned
+4. emergency_supply
+5. not_pws
+6. inaccessible
+7. great_lakes_champlain
+8. concrete_lined
+9. not_active
+10. no_intake
+11. has_data
+12. ambiguous_p_numbers
+13. seasonal
+14. nyc_PWS
+15. not a ponded water
+16. empties into an adjacent PWS that has already been sampled
+
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+DT::datatable(excluded_pws , extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+
+
+```

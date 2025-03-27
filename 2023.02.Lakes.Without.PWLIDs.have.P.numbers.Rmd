@@ -1,0 +1,147 @@
+---
+title: "Lakes without PWLIDs but have P numbers"
+author: "Alene Onion"
+date: '`r paste("DRAFT Report Generated on:", format(Sys.Date(),format="%B %d, %Y"))`'
+output: html_document
+---
+#  {.tabset}
+
+to check whether lakes without PWL IDs are still found in Chapter X:
+https://www.dec.ny.gov/regs/2485.html
+
+To be clear, this is an analysis of the lakes in our database which are only a third of the total lakes in the NHD layer. 
+
+## Percent
+
+A large percentage of the lakes in our database do not have PWLIDs.
+To be clear, this is an analysis of the lakes in our database which are only a third of the total lakes in the NHD layer. 
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+fil<-newdata %>% filter(LAKE_WATERBODY_TYPE=='LAKE') %>% 
+  select(LAKE_HISTORY_ID) %>% distinct()
+ids<-newdata %>% 
+  filter(LAKE_HISTORY_ID %in% c(unique(fil$LAKE_HISTORY_ID))) %>% 
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID,LAKE_POND_NUMBER) %>% 
+  distinct() %>% 
+  mutate(pwl=ifelse(is.na(LOCATION_PWL_ID),'no','yes'),
+         pnum=ifelse(is.na(LAKE_POND_NUMBER),'no','yes')) %>% 
+  select(LAKE_HISTORY_ID,LAKE_POND_NUMBER,pwl,pnum) %>% distinct() %>% 
+  arrange(LAKE_HISTORY_ID,desc(pwl),desc(pnum)) %>% 
+  distinct(LAKE_HISTORY_ID,.keep_all = TRUE)
+forplot<-ids %>% 
+  group_by(pwl,pnum) %>% 
+  summarise(n=n()) %>% 
+  ungroup()
+
+library(ggplot2)
+print(ggplot(data=forplot, aes(x=pwl, y=n,fill=pnum)) +
+  geom_bar(stat="identity")+
+    xlab("Does the lake have a PWLID?")+
+    ylab("Number of lakes")+
+    labs(fill='Does the lake have a P number?'))
+```
+
+## PWS
+
+Among Public Water supplies,
+without PWLIDs but that do have P numbers,
+how many of these P numbers that can be found in Chapter X: https://www.dec.ny.gov/regs/2485.html ?
+
+
+To be clear, we are assuming that the p number in the the lakes database is accurate and can be searched for in the Chapter X html pages. There is likely human error in both assumptions.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+library(rvest)
+library(tidyverse)
+
+files<- list.files(path="C:/Users/amonion/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization/data.requests/NY-CRR/",pattern=".html")
+nfiles<-length(files)
+
+ponds<-read.csv("data.requests/nopwl_pond_ID.csv", na.strings="")
+#ponds<-ids %>% filter(pwl=="no",pnum=="yes") %>% distinct()
+ponds<-ponds %>% select(LAKE_HISTORY_ID,LAKE_POND_NUMBER) %>% distinct()
+
+ponds<-ponds %>%  filter(!is.na(LAKE_POND_NUMBER)) %>% 
+  mutate(LAKE_POND_NUMBER=paste("P ",LAKE_POND_NUMBER,sep="")) %>% distinct() %>% 
+  #add first row as test
+  add_row(LAKE_HISTORY_ID='test known p number',LAKE_POND_NUMBER="P 88") %>% 
+  arrange(desc(LAKE_HISTORY_ID)) %>% 
+  mutate(found="no")
+
+
+for(i in 1:nfiles){
+content <- read_html(paste("data.requests/NY-CRR/",files[i],sep=""))
+#individual test
+grepl(ponds$LAKE_POND_NUMBER[1],content)
+ponds<-ponds %>% 
+  group_by(LAKE_HISTORY_ID) %>% 
+  mutate(found=ifelse(grepl(LAKE_POND_NUMBER,content),paste(found,files[i],sep=""),found)) %>% 
+  ungroup()
+}
+
+forplot<-ponds %>% 
+  mutate(found=ifelse(found=="no","no","yes")) %>% 
+  group_by(found) %>% 
+  summarise(n=n()) %>% 
+  ungroup()
+
+library(ggplot2)
+print(ggplot(data=forplot, aes(x=found, y=n)) +
+  geom_bar(stat="identity")+
+    labs(title="Amonth Public Water Supplies without PWL but with P number",
+         x="Is the p number found in Chapter X?",
+         y="Number of lakes"))
+```
+
+## All Waters
+
+Among all lakes,
+without PWLIDs but that do have P numbers,
+how many of these P numbers that can be found in Chapter X: https://www.dec.ny.gov/regs/2485.html ?
+
+
+To be clear, we are assuming that the p number in the the lakes database is accurate and can be searched for in the Chapter X html pages. There is likely human error in both assumptions.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+library(rvest)
+library(tidyverse)
+
+files<- list.files(path="C:/Users/amonion/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization/data.requests/NY-CRR/",pattern=".html")
+nfiles<-length(files)
+
+#ponds<-read.csv("data.requests/nopwl_pond_ID.csv", na.strings="")
+ponds<-ids %>% filter(pwl=="no",pnum=="yes") %>% distinct()
+ponds<-ponds %>% select(LAKE_HISTORY_ID,LAKE_POND_NUMBER) %>% distinct()
+
+ponds<-ponds %>%  filter(!is.na(LAKE_POND_NUMBER)) %>% 
+  mutate(LAKE_POND_NUMBER=paste("P ",LAKE_POND_NUMBER,sep="")) %>% distinct() %>% 
+  #add first row as test
+  add_row(LAKE_HISTORY_ID='test known p number',LAKE_POND_NUMBER="P 88") %>% 
+  arrange(desc(LAKE_HISTORY_ID)) %>% 
+  mutate(found="no")
+
+
+for(i in 1:nfiles){
+content <- read_html(paste("data.requests/NY-CRR/",files[i],sep=""))
+#individual test
+grepl(ponds$LAKE_POND_NUMBER[1],content)
+ponds<-ponds %>% 
+  group_by(LAKE_HISTORY_ID) %>% 
+  mutate(found=ifelse(grepl(LAKE_POND_NUMBER,content),files[i],found)) %>% 
+  ungroup()
+}
+
+forplot<-ponds %>% 
+  mutate(found=ifelse(found=="no","no","yes")) %>% 
+  group_by(found) %>% 
+  summarise(n=n()) %>% 
+  ungroup()
+
+library(ggplot2)
+print(ggplot(data=forplot, aes(x=found, y=n)) +
+  geom_bar(stat="identity")+
+    labs(title="Amonth Public Water Supplies without PWL but with P number",
+         x="Is the p number found in Chapter X?",
+         y="Number of lakes"))
+```

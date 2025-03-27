@@ -1,0 +1,290 @@
+---
+title: "2023.01.12.PWS.wqs.attainment"
+author: "Alene Onion"
+date: '`r paste("DRAFT Report Generated on:", format(Sys.Date(),format="%B %d, %Y"))`'
+output: html_document
+---
+
+#  {.tabset}
+
+to update assessment status of the PWS
+
+## Assessed PWS
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+library(tidyverse)
+rm(list=setdiff(ls(), c("newdata")))
+  # setwd("C:/Users/amonion/New York State Office of Information Technology Services/BWAM - Lakes Database/Current")
+  # source("new_database/Reading.LMAS.Data.R")
+   setwd("C:/Users/amonion/New York State Office of Information Technology Services/LMAS - PWS/PWS_Prioritization")
+   
+rm(list=setdiff(ls(), c("newdata")))
+
+```
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+temp<-newdata %>% 
+  filter(PWS=="YES") %>% 
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID) %>% distinct()
+att<-read.csv("2022.Data/2022_lmas_evaluations.csv")
+att<-att %>% 
+  rename(LOCATION_PWL_ID=seg_id) %>% distinct()
+att<-merge(temp,att,by=c('LOCATION_PWL_ID'),all.x=TRUE)
+
+#remove NYC reservoirs
+
+att<-att %>% filter(!(LAKE_HISTORY_ID %in%
+                        c('1302WES0067','1302BOY0076','1302EAS0089','1302BOG0086',
+                          '1302MID0062','1302DIV0083','1302CRO0059',
+                          '1302TIT0103','1302CRO0109','1302AMA0050','1302MUS0044A','1302NEW0044',
+                          '1702KEN1063','1302GIL0061','1302GLE0074','1302KIR0052','1404CAN0402A',
+                          '1403PEP0358A','1306RON0815A','1402NEV0058B','1307ASH0848','1202SCH0638A',
+                          '1301JER1042','1702HIL1052',
+                          # lakes removed for reasons described in the unassessed without data section
+                          '1501STA1011','1301TIO0152','1301SUM0193',
+                          '1311THO0274','0905CRA0309','1307KIN0837A','1307KIN0837','1307KIN0838A', '1301BRO0155',
+                          '0402RUS0033','1702BAR1108','1000CHA0001','0300ONT0000',
+                          '1005DOL0424','1301LUS0204',
+                          # lakes removed for reasons described in the unassessed with data section
+                          '0302SOD0096','0601OTS0404','0601OTS0404','0601OTS0404','0705SEN0369','0705SEN0369','0705SEN0369','1201MAR0570','1301POP0191','1308TAG0869',
+                          '0705SEN0369','0705SEN0369','1301QUE0184A','1301STI0187A','1301STI0187A')))
+
+rm(list=setdiff(ls(), c("newdata",'att')))
+nopwl<-att %>% filter(is.na(LOCATION_PWL_ID))
+att<-att %>% filter(!is.na(LOCATION_PWL_ID))
+```
+
+Here are the PWS that have sufficient data already for an assessment (n_years_sampled >=2; n_samples>=6; use== source_of_water_supply)
+
+as a bonus, Lindsey asked for the parameters with exceedances in these waterbodies. For example, Attica Reservoir (0102ATT0020) has exceedances (n_exceedances>0) for these parameters: iron, manganese, ammonia
+
+The output should be:
+
+Lake_ID, SDWIS, parameters with exceedance. 
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes that can be assessed
+
+2. Data from table 1 + SDWIS id 
+
+To be clear, there are some PWLIDs where multiple lakes are associated with a single PWLID. Therefore,samples in both of these lakes will be considered as distinct sampling events. That's how our system currently processes these waterbodies and so be it. We just want to record the list her so we are aware of this observation moving forward:
+LAKE_HISTORY_ID	LOCATION_PWL_ID
+1306HIG0492	1306-0060
+1306SHA0491	1306-0060
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+table1_expanded<-att %>% 
+  filter(n_years_sampled >=2| n_samples_collected>=6) %>% 
+  filter(use== 'source_of_water_supply',
+         within_period=='TRUE') %>% distinct()
+
+table1_excursions<-table1_expanded %>% filter(n_exceedances>=1) %>%  
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID, parameter) %>% 
+  group_by(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>%
+  summarise(excursion_parms = toString(parameter)) %>%
+  ungroup() %>%
+  mutate(excursions = 'Y') %>% 
+  distinct()
+
+table1a_assessment_results<-table1_expanded %>% filter(n_exceedances==0, !LAKE_HISTORY_ID %in% table1_excursions$LAKE_HISTORY_ID) %>%  
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID) %>%
+  distinct() %>% 
+  mutate(excursion_parms = NA,
+         excursions = 'N') %>% 
+  bind_rows(table1_excursions)
+
+doh<-read.csv("data.requests/PWS_IDs.csv")
+doh<-doh %>%
+  select(LOCATION_PWL_ID,LAKE_HISTORY_ID,PWS.ID) %>% distinct() 
+
+table1b_PWS_info<-merge(table1a_assessment_results, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x = T)
+
+
+
+# # trying to figure out which lakes overlap with the PWL dataset
+# where<-att %>% filter(use== 'source_of_water_supply',
+#          within_period=='TRUE', LOCATION_PWL_ID %in% sid$LOCATION_PWL_ID)
+# t1<-table1a_assessment_results %>%  filter(LOCATION_PWL_ID %in% where$LOCATION_PWL_ID)
+# t2<-table2a_assessment_results %>%  filter(LOCATION_PWL_ID %in% where$LOCATION_PWL_ID)
+# t3<-table3_ids %>%  filter(LOCATION_PWL_ID %in% where$LOCATION_PWL_ID)
+
+
+#rm(list=setdiff(ls(), c("newdata",'att','table1')))
+
+DT::datatable(table1a_assessment_results, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table1b_PWS_info, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+## Unassessed PWS with data
+
+Here are the PWS that have data but not enough data for an assessment (lakes with data that aren't in the list above)
+
+The output should be:
+
+Lake_ID, SDWIS, parameters with exceedance. 
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. PWS lakes with data that are unassessed
+
+2. Data from table 1 + SDWIS id 
+
+We excluded lakes for the following reasons:
+
+1. Transient non-community: 0302SOD0096,0601OTS0404,0601OTS0404,0601OTS0404,0705SEN0369,0705SEN0369,0705SEN0369,1201MAR0570,1301POP0191,1308TAG0869
+
+2. Non-transient: 0705SEN0369
+
+3. State Government Owned: 0705SEN0369,1301QUE0184A
+
+4. Federal Government Owned:1301STI0187A,1301STI0187A
+
+
+
+To be clear, there are some PWLIDs where multiple lakes are associated with a single PWLID. Therefore,samples in both of these lakes will be considered as distinct sampling events. That's how our system currently processes these waterbodies and so be it. We just want to record the list her so we are aware of this observation moving forward:
+LOCATION_PWL_ID (LAKE_HISTORY_IDs): 1202-0015(1202COB0583,1202HOL5453); 1202-0016(1202UWB0579,1202UWB0579A); 0503-0031(0503HOR0034,0503HOR0036); 1003-0114(1003MEA5064,1003PAT0027); 1104-0125(1104CAM0152	,1104JAC0151); 1104-0127(1104POR0152E,1104RIC0152D)
+
+The lakes in the first table are ranked to inform sampling priority. Ranked waterbodies were those that did not meet water quality standards for at least one parameter (i.e. excursion parameter) since 2003. For each waterbody and excursion parameter, we determined the relative excursion magnitude by dividing the median parameter value of the last 20 years by their respective water quality standard threshold. The excursion rate was determined by dividing the quantity of excursions by the total samples for each waterbody’s excursion parameter. A composite score for each waterbody and parameter was estimated by multiplying the excursion magnitude by the excursion rate. Waterbodies were ranked in descending order based on their score. If waterbodies had multiple excursion parameters, the parameter with the highest excursion magnitude was selected for the composite score.
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+#remove impaired
+remove<-table1a_assessment_results %>% select(LAKE_HISTORY_ID,LOCATION_PWL_ID) %>% distinct() %>% mutate(remove="yes")
+table2_expanded<-merge(remove,att,by=c('LAKE_HISTORY_ID','LOCATION_PWL_ID'),all=TRUE)
+table2_expanded<-table2_expanded %>% filter(is.na(remove)) %>% select(-remove) %>% 
+  #filter to !is.na records
+  filter(!is.na(n_samples_collected),use!='fishing')
+
+table2_excursions<-table2_expanded %>% filter(n_exceedances>=1) %>%  
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID,within_period,use, parameter) %>% 
+  group_by(LAKE_HISTORY_ID, LOCATION_PWL_ID,within_period) %>%
+  summarise(excursion_parms = toString(parameter)) %>%
+  ungroup() %>%
+  mutate(within_period=ifelse(within_period=="TRUE","recent","old")) %>%  distinct() %>% 
+  spread(within_period,excursion_parms) %>% 
+  mutate(excursions = 'Y') %>% 
+  distinct()
+
+table2a_assessment_results<-table2_expanded %>% filter(n_exceedances==0, !LAKE_HISTORY_ID %in% table2_excursions$LAKE_HISTORY_ID) %>%  
+  select(LAKE_HISTORY_ID,LOCATION_PWL_ID) %>%
+  distinct() %>% 
+  mutate(old = NA, recent = NA,
+         excursions = 'N') %>% 
+  bind_rows(table2_excursions)
+
+ranking<-read.csv("ranked_PWS_2023.csv")
+table2a_assessment_results<-merge(table2a_assessment_results,ranking,by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'),all.x=TRUE)
+table2a_assessment_results<-table2a_assessment_results %>% arrange(desc(score))
+
+doh<-read.csv("data.requests/PWS_IDs.csv")
+
+table2b_PWS_info<-merge(table2a_assessment_results, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x= T)
+
+DT::datatable(table2a_assessment_results, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table2b_PWS_info, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+## Unassessed PWS without data
+
+Here are the PWS without any data, unassessed
+
+The output should be:
+
+Lake_ID, SDWIS. 
+
+Because there are multiple SDWIS ids per lake (multiple intakes per lake), we reported this list in two tables:
+
+1. Unassessed PWS lakes 
+
+2. Data from table 1 + SDWIS id 
+
+Lakes were excluded for the following reasons:
+
+1. non-community systems: 1501STA1011 1301TIO0152 1301SUM0193 1311THO0274 0905CRA0309
+
+2. Federally owned:1301LUS0204
+
+3. State owned:1005DOL0424
+
+4. emergency back up systems: 1307KIN0837A, 1307KIN0837, 1301BRO0155
+
+5. DOH said "they were not a public water supply": 0402RUS0033
+
+6. inaccessible (located on an island off the coast of Connecticut) 1702BAR1108
+
+7. removed lake ontario and lake champlain sites since those are sampled by the GL program: 1000CHA0001,0300ONT0000
+
+
+To be clear, there are some PWLIDs where multiple lakes are associated with a single PWLID. Therefore,samples in both of these lakes will be considered as distinct sampling events. That's how our system currently processes these waterbodies and so be it. We just want to record the list her so we are aware of this observation moving forward:
+1202-0069(1202TAN0655A,1202TAN0655B)
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+table3<-att %>% filter(is.na(n_samples_collected)) %>%
+  select(LAKE_HISTORY_ID, LOCATION_PWL_ID) %>%
+  distinct() 
+
+
+doh<-read.csv("data.requests/PWS_IDs.csv")
+
+table3sidwis<-merge(table3, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x= T)
+
+DT::datatable(table3, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(table3sidwis, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```
+
+## Unassessed without PWLID
+
+As a reminder, we also have public water supplies that aren't currently on the waterbody inventory list. 
+
+We have recently learned that those lakes with P Numbers found in Chapter X can actually be assessed. As a reminder, Chapter X is found here:  https://www.dec.ny.gov/regs/2485.html
+
+There are 4 tables below:
+
+1. All the unassessed PWS without PWLIDs that have p numbers found on Chapter X.
+
+Please note!!! we removed these lakes from this list for the following reasons:
+
+a. Large lakes with definite PWLIDs:0202CHA0122,0705CAY0296
+
+b. Ambiguous p numbers: 0302UWB0008,0601UWB0395,1003RAY0091
+
+
+2. Lakes in table 1 merged with the SIDWIS IDs
+
+3. All the unassessed PWS without PWLIDs that can't be found on Chapter X and therefore can't be assessed at this time.
+
+4. Lakes in table 3 merged with the SIDWIS IDs
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+
+
+doh<-read.csv("data.requests/PWS_IDs.csv")
+
+pnum<-read.csv("unassessed.with.p.number.on.chapter.x.csv")
+pnum<-pnum %>% filter(found!='no',!(LAKE_HISTORY_ID %in% c('0202CHA0122','0705CAY0296','0302UWB0008','0601UWB0395','1003RAY0091')))
+
+pnum<-merge(nopwl,pnum,by=c('LAKE_HISTORY_ID'),all=TRUE)
+nopwl<-pnum %>% filter(is.na(found)) %>% distinct()
+pnum<-pnum %>% filter(!is.na(found))%>% distinct()
+
+#adding the coordinates for Lindsey
+coords<-newdata %>% filter(LOCATION_TYPE=="CENTROID") %>% select(LAKE_HISTORY_ID,LOCATION_X_COORDINATE,LOCATION_Y_COORDINATE) %>% distinct()
+pnum<-merge(pnum,coords,by=c('LAKE_HISTORY_ID'),all.x=TRUE)
+
+nopwl_sdwis<-merge(nopwl, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x= T)
+pnum_sdwis<-merge(pnum, doh, by = c('LAKE_HISTORY_ID','LOCATION_PWL_ID'), all.x= T)
+
+DT::datatable(pnum, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(pnum_sdwis, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(nopwl, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+DT::datatable(nopwl_sdwis, extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+
+```

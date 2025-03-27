@@ -18,6 +18,29 @@ We are requesting input from DOH on those waterbodies that would be a priority f
 
 Lakes with public water supply intakes that we are intending to screen 2022-23. TO be clear, there are multiple intakes on many of these waterbodies.
 
+The following lakes were NOT SAMPLED because they were non-community systems:
+1501STA1011
+1301TIO0152
+1301SUM0193
+1311THO0274
+0905CRA0309
+
+The following lakes were NOT SAMPLED because they were emergency back up systems:
+1307KIN0837A
+
+The following lake was NOT SAMPLED because it is inaccessible (located on an island off the coast of Connecticut)
+1702BAR1108
+
+also removed lake ontario and lake champlain sites since those are sampled by the GL program
+1000CHA0001
+0300ONT0000
+
+
+These lakes WILL BE SAMPLED but were excluded from the contact WTO list because they have the same SIDWS ids as other waterbodies:
+1202TAN0655B (same sidwis id as 1202TAN0655A)
+0601WIL0297 (same sidws id as 0601LOW0295)
+1303UPP0223 (same sidws id as 1303ALE0222D)
+
 ```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 #merging lake id with the DOH ID
 

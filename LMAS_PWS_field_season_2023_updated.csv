@@ -1,0 +1,36 @@
+LOCATION_HISTORY_ID,latitude,longitude,sampling_status,LAKE_HISTORY_ID,LOCATION_PWL_ID,PWS.ID,notes
+0402UWB0030_DH,42.682598,-78.1203,sample_site,0402UWB0030,,NY6000618,
+0801LOW0594_DH,43.8217,-75.322,sample_site,0801LOW0594,,NY2402365,
+0906CAR0050_DH,43.9762,-75.3266,sample_site,0906CAR0050,,NY2202334,
+1004UWB0212_DH,44.5597,-73.603,sample_site,1004UWB0212,,NY0900216,
+1201COL0670_DH,43.0303,-74.4287,sample_site,1201COL0670,,NY1700019,
+1201DOL0709_DH,43.1631,-74.7802,sample_site,1201DOL0709,,NY2102299,
+1201FOR0681_DH,42.947,-74.609,sample_site,1201FOR0681,,NY2800139,
+1307SAU0834_DH,42.1102,-74.0178,sample_site,1307SAU0834,,NY5503386,
+0601LOW0295_DH,42.48,-75.05,sample_site,0601LOW0295,0601-0097,NY3800154,
+0601ALL0405_DH,42.829498,-74.951698,sample_site,0601ALL0405,0601-0117,NY3800156,
+1201FON0678A_DH,42.938689,-74.456553,sample_site,1201FON0678A,1201-0123,NY2800138,
+1202UWB0599_DH,42.65,-74.62,sample_site,1202UWB0599,1202-0038,NY4700097,
+1202TAN0655A_DH,42.217244,-74.150654,sample_site,1202TAN0655A,1202-0069,NY1900033,
+1202TAN0655B_DH,42.21,-74.15,sample_site,1202TAN0655B,,,"Same contact as 1202TAN0655A_DH, Joseph Myers: (518) 589-5919, tannersvillehighway@gmail.com. Clerk 518-589-5850 & clerks cell 607-435-1322"
+1303ALE0222D_DH,41.41,-74.01,sample_site,1303ALE0222D,1301-0181,NY3503526,
+1303UPP0223_DH,41.41,-74.01,sample_site,1303UPP0223,,,Michael Trainor: 845-534-4200 Ext 318
+1301COX0152B_DH,42.37179,73.864945,sample_site,1301COX0152B,1301-0227,NY1900027,
+1302IND0042B_DH,41.192478,-73.863042,sample_site,1302IND0042B,1302-0067,NY5903451,
+1307COO0839_DH,42.06,-74.18,sample_site,1307COO0839,1307-0022,NY5503374,
+1309POT0925A_DH,42.33,-73.92,sample_site,1309POT0925A,1309-0024,NY1900026,
+1311DUA0290_DH,42.8,-74.19,sample_site,1311DUA0290,,,"Jeff Iveson, Village of Delanson Water Commissioner 518-895-8926, delansonwater@gmail.com"
+1311DEL0292_DH,42.764646,-74.181247,sample_site,1311DEL0292,1311-0023,NY4600064,
+1404STA0462_DH,42.445323,-74.616072,sample_site,1404STA0462,,NY1200272,
+1201DOL0709_DH,43.1631,-74.7802,sample_site,1201DOL0709,,NY2102299,
+0601WIL0297_DH,42.51696,-75.052848,has_data,0601WIL0297,,,This was sampled before. Next year we are going to take a look at all PWS that have data to determine which are highest priority for assessment. 
+1101UWB1081_DH,42.9242,-73.7224,not_active_PWS,1101UWB1081,,,Not currently active.
+0302COB0118_DH,43.1385,-77.5718,not_NYS_waterbody,0302COB0118,0302-0035,NY2704518,Does not have NYS regulations associated with it in NYS Water Classifications 6NYCRR Parts 800-941.
+0503HOR0035_DH,42.391899,-77.625298,has_data,0503HOR0035,,,This was sampled before. Next year we are going to take a look at all PWS that have data to determine which are highest priority for assessment. 
+1306MIL0515_DH,41.4389,-74.5353,has_data,1306MIL0515,,,This was sampled before. Next year we are going to take a look at all PWS that have data to determine which are highest priority for assessment. 
+1306GLE0668_DH,41.3262,-74.3371,has_data,1306GLE0668,,NY3503527,This was sampled before. Next year we are going to take a look at all PWS that have data to determine which are highest priority for assessment. 
+1201UWB0662_DH,43.0286,-74.4596,abnormal_waterbody,1201UWB0662,,,"We are not sampling this reservoir because it experiences frequent large drawdowns, is concrete lined, and would most likely have similar water quality compared to the nearby upstream reservoir, which was sampled in 2021."
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,"Need to check for PWS IDs, if not then have to get contact information for Lindsey on those waterbodies. ",,,,,

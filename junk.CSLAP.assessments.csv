@@ -1,0 +1,199 @@
+"LOCATION_PWL_ID","LAKE_HISTORY_ID","PWS","LOCATION_HISTORY_ID","waterbody","huc_10","basin_name","class","water_type","segment_assessment","use","use_assessment","parameter","value"
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","fishing","IR3_unassessed","ammonia",1
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","secondary_contact_recreation","not-applicable","not-applicable",1
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","primary_contact_recreation","not-applicable","not-applicable",1
+"0601-0068","0601WHI5191","NO","0601WHI5191_C","White Birch Lake",205010112,"Susquehanna River","c","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"0602-0040","0602GOR0136","NO","0602GOR0136_C","Gorton Lake",205010205,"Susquehanna River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","fishing","IR3_unassessed","ammonia",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","epa_appended_listing","not-applicable","not-applicable",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","source_of_water_supply","IR1_stressed_confirmed","ammonia; chloride; nitrate_nitrite",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","primary_contact_recreation","IR1_fully-supported_confirmed","phosphorus",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","shellfishing","not-applicable","not-applicable",1
+"1103-0015","1103SUM0080","NO","1103SUM0080_C","Summit Lake",202000303,"Upper Hudson River","aa","pond","IR2_some-uses-supported","secondary_contact_recreation","IR1_fully-supported_confirmed","phosphorus",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","secondary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","fishing","IR3_fully-supported_unconfirmed","dissolved_oxygen; nitrite; ph",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","source_of_water_supply","not-applicable","not-applicable",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","primary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_DH","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","secondary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","fishing","IR3_fully-supported_unconfirmed","dissolved_oxygen; nitrite; ph",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","source_of_water_supply","not-applicable","not-applicable",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","primary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1104-0182","1104FOU0325","NO","1104FOU0325_C","Fourth Lake",202000107,"Upper Hudson River","b","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"1301-0142","1301CEL0166","NO","1301CEL0166_C","Lake Celeste",203010101,"Lower Hudson River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR4a_impaired_confirmed","mercury",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_DH","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR4a_impaired_confirmed","mercury",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1301-0271","1301DYK0445","NO","1301DYK0445_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR4a_impaired_confirmed","mercury",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1301-0271","1301SLO0446","NO","1301SLO0446_C","Dyken Pond",202000601,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1302-0002","1302KIT0114","NO","1302KIT0114_C","Lake Kitchawan",203010103,"Lower Hudson River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","fishing","IR5_impaired_confirmed","dissolved_oxygen",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","primary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0014","1302TON0085","NO","1302TON0085_C","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","secondary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","fishing","IR5_impaired_confirmed","dissolved_oxygen",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","primary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0014","1302TON0085","NO","1302TON0085_DH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","secondary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","fishing","IR5_impaired_confirmed","dissolved_oxygen",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","primary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0014","1302TON0085","NO","1302TON0085_BEACH","Lake Tonetta",203010102,"Lower Hudson River","b","pond","IR5_impaired","secondary_contact_recreation","IR3_fully-supported_unconfirmed","dissolved_oxygen; ph",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","fishing","IR3_unassessed","ammonia",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1302-0054","1302TRU0115A","NO","1302TRU0115A_C","Truesdale Lake",203010103,"Lower Hudson River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR4a_impaired_confirmed","algal_weed_growth",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_C","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR4a_impaired_confirmed","algal_weed_growth",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_BEACH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","secondary_contact_recreation","IR4a_impaired_confirmed","algal_weed_growth",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","shellfishing","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","fishing","IR3_impaired_unconfirmed","dissolved_oxygen; ph",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1302-0100","1302CAS0059B","NO","1302CAS0059B_DH","Lake Casse",203010102,"Lower Hudson River","b","pond","IR4a_impaired","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen; ph; phosphorus",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","secondary_contact_recreation","IR1_fully-supported_confirmed","phosphorus",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","fishing","IR3_unassessed","ammonia",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","epa_appended_listing","not-applicable","not-applicable",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","source_of_water_supply","not-applicable","not-applicable",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","primary_contact_recreation","IR1_fully-supported_confirmed","phosphorus",1
+"1401-0080","1401DEV0174","NO","1401DEV0174_C","Lake Devenogue/Upper Highland Lake",204010405,"Delaware River","b","pond","IR2_some-uses-supported","shellfishing","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","fishing","IR3_unassessed","No_Data",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_C","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","fishing","IR3_unassessed","No_Data",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1402-0047","1402DAV0038C","NO","1402DAV0038C_DH","Davies Lake",204010403,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_C","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"1402-0048","1402TRE0039","NO","1402TRE0039_DH","Treasure Lake",204010403,"Delaware River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","source_of_water_supply","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","fishing","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_DH","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","source_of_water_supply","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","fishing","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_SC","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","source_of_water_supply","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","fishing","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_NE","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","source_of_water_supply","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","shellfishing","not-applicable","not-applicable",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","fishing","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","secondary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","primary_contact_recreation","IR3_impaired_unconfirmed","dissolved_oxygen",1
+"1402-0049","1402LOU0040","YES","1402LOU0040_C","McKee Reservoir/Lake Louise Marie",204010403,"Delaware River","a","pond","IR3_needs-verification","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NNW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_C","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_NW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SSW","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","secondary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","source_of_water_supply","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","shellfishing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","primary_contact_recreation","IR5_impaired_confirmed","phosphorus",1
+"1404-0033","1404LAU0382","NO","1404LAU0382_SE","Blueberry, Laurel Lakes",204010103,"Delaware River","b","pond","IR5_impaired","fishing","IR3_fully-supported_unconfirmed","nitrite",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","shellfishing","not-applicable","not-applicable",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","secondary_contact_recreation","IR3_unassessed","No_Data",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","primary_contact_recreation","IR3_unassessed","No_Data",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","epa_appended_listing","not-applicable","not-applicable",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","fishing","IR3_unassessed","No_Data",1
+"1404-0072","1404DEL0420","NO","1404DEL0420_C","Lake Delaware",204010101,"Delaware River","b","pond","IR3_unassessed","source_of_water_supply","not-applicable","not-applicable",1

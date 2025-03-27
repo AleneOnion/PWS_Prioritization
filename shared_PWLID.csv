@@ -1,0 +1,17 @@
+LAKE_HISTORY_ID,LOCATION_PWL_ID,old_excursion_parameters,recent_excursion_parameters,excursions,assessment_status
+1306HIG0492,1306-0060,,,N,assessed
+1306SHA0491,1306-0060,,,N,assessed
+1202COB0583,1202-0015,,"iron, manganese",Y,unassessed
+1202HOL5453,1202-0015,,"iron, manganese",Y,unassessed
+1202UWB0579,1202-0016,,"manganese, iron",Y,unassessed
+1202UWB0579A,1202-0016,,"manganese, iron",Y,unassessed
+0503HOR0034,0503-0031,"manganese, iron, ammonia",,Y,unassessed
+0503HOR0036,0503-0031,"manganese, iron, ammonia",,Y,unassessed
+1003MEA5064,1003-0114,,manganese,Y,unassessed
+1003PAT0027,1003-0114,,manganese,Y,unassessed
+1104CAM0152,1104-0125,iron,,Y,unassessed
+1104JAC0151,1104-0125,iron,,Y,unassessed
+1104POR0152E,1104-0127,,"iron, manganese",Y,unassessed
+1104RIC0152D,1104-0127,,"manganese, iron",Y,unassessed
+1202TAN0655A,1202-0069,,,,no_data
+1202TAN0655B,1202-0069,,,,no_data
